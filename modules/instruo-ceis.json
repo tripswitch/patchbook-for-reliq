@@ -1,0 +1,44 @@
+{
+  "id": "instruo-ceis",
+  "name": "Cèis",
+  "maker": "Instruō",
+  "hp": 8,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-ceis",
+    "listedAs": "Instruō Ceis"
+  },
+  "inputs": [
+    "GATE/TRIG IN",
+    "ATTACK CV",
+    "DECAY CV",
+    "SUSTAIN CV",
+    "RELEASE CV"
+  ],
+  "outputs": [
+    "CV OUT",
+    "COMBINED TRIG OUT",
+    "ATTACK GATE",
+    "DECAY GATE",
+    "SUSTAIN GATE",
+    "RELEASE GATE"
+  ],
+  "signals": {
+    "GATE/TRIG IN": "gate",
+    "ATTACK CV": "cv",
+    "DECAY CV": "cv",
+    "SUSTAIN CV": "cv",
+    "RELEASE CV": "cv",
+    "CV OUT": "cv",
+    "COMBINED TRIG OUT": "gate",
+    "ATTACK GATE": "gate",
+    "DECAY GATE": "gate",
+    "SUSTAIN GATE": "gate",
+    "RELEASE GATE": "gate"
+  },
+  "confidence": "high",
+  "source": "Ceis-Manual-A5-v.2.pdf p5 (overview/key), p6-11",
+  "notes": "Panel prints only 'CV' over the row of stage CV inputs, 'CV OUT', and a gate symbol over the combined trigger output; stage gate outputs sit atop each fader (A/D/S/R). Gate/Trig input labels taken from manual key.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

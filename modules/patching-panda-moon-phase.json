@@ -1,0 +1,40 @@
+{
+  "id": "patching-panda-moon-phase",
+  "name": "Moon Phase",
+  "maker": "Patching Panda",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/patching-panda-moon-phase-silver",
+    "listedAs": "Patching Panda Moon Phase (Silver)"
+  },
+  "inputs": [
+    "IN L",
+    "IN R",
+    "Q",
+    "SPAN",
+    "IMAGER",
+    "MODE",
+    "ST f"
+  ],
+  "outputs": [
+    "OUT L",
+    "OUT R"
+  ],
+  "signals": {
+    "IN L": "audio",
+    "IN R": "audio",
+    "Q": "cv",
+    "SPAN": "cv",
+    "IMAGER": "cv",
+    "MODE": "gate",
+    "ST f": "cv",
+    "OUT L": "audio",
+    "OUT R": "audio"
+  },
+  "confidence": "high",
+  "source": "moon_phase_instructions.pdf p.3 (panel diagram + legend A-I)",
+  "notes": "Q = resonance CV, SPAN = span CV, IMAGER = stereo imager CV, MODE = mode-select trigger, ST f = stereo frequency (cutoff) CV. No separate cutoff CV jack beyond ST f.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

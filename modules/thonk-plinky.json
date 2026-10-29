@@ -1,0 +1,52 @@
+{
+  "id": "thonk-plinky",
+  "name": "Plinky",
+  "maker": "Thonk",
+  "hp": 24,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/thonk-plinky",
+    "listedAs": "Thonk Plinky"
+  },
+  "inputs": [
+    "A",
+    "B",
+    "X",
+    "Y",
+    "PITCH",
+    "GATE",
+    "CLOCK",
+    "AUDIO IN"
+  ],
+  "outputs": [
+    "CLOCK",
+    "TRIG",
+    "PITCH HI",
+    "GATE",
+    "PITCH LO",
+    "PRESSURE",
+    "OUT R",
+    "OUT L"
+  ],
+  "signals": {
+    "A": "cv",
+    "B": "cv",
+    "X": "cv",
+    "Y": "cv",
+    "PITCH": "pitch",
+    "GATE": "gate",
+    "CLOCK": "clock",
+    "AUDIO IN": "audio",
+    "TRIG": "gate",
+    "PITCH HI": "pitch",
+    "PITCH LO": "pitch",
+    "PRESSURE": "cv",
+    "OUT R": "audio",
+    "OUT L": "audio"
+  },
+  "confidence": "medium",
+  "source": "https://plinkysynth.com/docs/manual (Plinky hardware: Eurorack inputs left column / outputs right column) and https://raw.githubusercontent.com/plinkysynth/plinky_public/main/manual.txt (CV INPUTS / CV OUTPUTS top to bottom); ModularGrid panel image (checked 21 Oct 2026) (jack count matches)",
+  "notes": "Labels are the manual's names (panel image could not be downloaded). Left column = inputs, right column = outputs. Order follows the GitHub manual (top to bottom); the newer site manual says Euro L/R are the first two jacks top right, so order may differ by revision. AUDIO IN is listed among the column inputs in the GitHub manual but the newer manual describes the audio in as a TRS jack on the top/bottom board edges - confirm it is a front-panel jack on your unit. OUT L normalled to mono when R unplugged. Edge-mounted jacks (stereo headphones/line out, USB, and TRS MIDI on v3) are not front-panel patch points and are omitted. Site says Plinky fits 24HP cases.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

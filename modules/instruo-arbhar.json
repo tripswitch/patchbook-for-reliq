@@ -1,0 +1,44 @@
+{
+  "id": "instruo-arbhar",
+  "name": "Arbhar",
+  "maker": "Instruō",
+  "hp": 18,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-arbhar",
+    "listedAs": "Instruō arbhar"
+  },
+  "inputs": [
+    "IN",
+    "ONSET",
+    "CAPTURE",
+    "STRIKE",
+    "1V/OCT",
+    "INTENSITY CV",
+    "LENGTH CV",
+    "SCAN CV"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "GATE OUT"
+  ],
+  "signals": {
+    "IN": "audio",
+    "ONSET": "gate",
+    "CAPTURE": "gate",
+    "STRIKE": "gate",
+    "1V/OCT": "pitch",
+    "INTENSITY CV": "cv",
+    "LENGTH CV": "cv",
+    "SCAN CV": "cv",
+    "OUT 1": "audio",
+    "OUT 2": "audio",
+    "GATE OUT": "gate"
+  },
+  "confidence": "high",
+  "source": "Arbhar-Manual-Firmware-1.6.a.pdf p.6 (panel overview and key)",
+  "notes": "Built-in condenser mic normals to ONSET, and ONSET normals to IN. OUT 2 is normalled to OUT 1 (OUT 1 alone = mono). CAPTURE is the Capture Gate Input; STRIKE (Strike Input) is marked by an icon only, no printed text. Additional CV inputs live on the separate 2HP CV Expansion Module (see arbhar-expander).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

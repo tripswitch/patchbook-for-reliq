@@ -1,0 +1,26 @@
+{
+  "id": "expert-sleepers-midi-breakout",
+  "name": "Disting MIDI Breakout",
+  "maker": "Expert Sleepers",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/expert-sleepers-midi-breakout",
+    "listedAs": "Expert Sleepers MIDI Breakout"
+  },
+  "inputs": [
+    "MIDI IN"
+  ],
+  "outputs": [
+    "MIDI OUT"
+  ],
+  "signals": {
+    "MIDI IN": "any",
+    "MIDI OUT": "any"
+  },
+  "confidence": "high",
+  "source": "https://www.expert-sleepers.co.uk/dm4midibreakout.html ; disting_user_manual_4.17.pdf p.109 (MIDI I/O, breakout module); ModularGrid panel image (checked 21 Oct 2026)",
+  "notes": "Passive 4HP breakout exposing the host module's MIDI in/out header as two 5-pin DIN sockets (disting manual: header carries one MIDI input and one MIDI output). Works with disting mk4/EX, ES-9, General CV, FH-2, CVM-8. Exact printed labels and panel photo not seen.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "music-thing-turing-machine-mk-ii",
+  "name": "Turing Machine Mk II",
+  "maker": "Music Thing Modular",
+  "hp": 10,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/music-thing-modular-turing-machine-mk-ii--",
+    "listedAs": "Music Thing Modular Turing Machine Mk II"
+  },
+  "inputs": [
+    "CLOCK",
+    "CV"
+  ],
+  "outputs": [
+    "PULSE",
+    "NOISE",
+    "OUT"
+  ],
+  "signals": {
+    "CLOCK": "clock",
+    "CV": "cv",
+    "PULSE": "gate",
+    "NOISE": "audio",
+    "OUT": "cv"
+  },
+  "confidence": "high",
+  "source": "Turing_Machine_Mkii_Build_Doc_v1.01a.pdf p.18 (finished panel photo); p.15 (5 jack sockets)",
+  "notes": "CV input adds to the big (change/probability) knob. OUT range set by SCALE knob. Rear expander header (for Volts/Pulses) not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

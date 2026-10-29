@@ -1,0 +1,38 @@
+{
+  "id": "instruo-saich",
+  "name": "Saïch",
+  "maker": "Instruō",
+  "hp": 12,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-saich",
+    "listedAs": "Instruō saïch"
+  },
+  "inputs": [
+    "1V/OCT 1 (GLOBAL)",
+    "1V/OCT 2",
+    "1V/OCT 3",
+    "1V/OCT 4",
+    "FM",
+    "PWM",
+    "CTRL CV"
+  ],
+  "outputs": [
+    "OUT"
+  ],
+  "signals": {
+    "1V/OCT 1 (GLOBAL)": "pitch",
+    "1V/OCT 2": "pitch",
+    "1V/OCT 3": "pitch",
+    "1V/OCT 4": "pitch",
+    "FM": "audio",
+    "PWM": "cv",
+    "CTRL CV": "cv",
+    "OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "saïch-Manual.pdf p.5 (panel overview and key)",
+  "notes": "Voice 1 1V/OCT normals to voices 2-4 in parallel (global pitch); patching 2-4 breaks the normal and their CV sums with voice 1. FM has a Lin/Exp toggle. CTRL CV jack is printed 'CV' and is assignable (Mix Profile Scan, Intervallic Offset or Global Detune). Single mixed output.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

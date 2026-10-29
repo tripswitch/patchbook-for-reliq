@@ -1,0 +1,46 @@
+{
+  "id": "mutable-instruments-beads",
+  "name": "Beads",
+  "maker": "Mutable instruments",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/mutable-instruments-beads",
+    "listedAs": "Mutable instruments Beads"
+  },
+  "inputs": [
+    "ASSIGN CV",
+    "TIME CV",
+    "SIZE CV",
+    "SHAPE CV",
+    "PITCH CV",
+    "DENSITY",
+    "IN L",
+    "IN R",
+    "FREEZE",
+    "SEED"
+  ],
+  "outputs": [
+    "OUT L",
+    "OUT R"
+  ],
+  "signals": {
+    "ASSIGN CV": "cv",
+    "TIME CV": "cv",
+    "SIZE CV": "cv",
+    "SHAPE CV": "cv",
+    "PITCH CV": "pitch",
+    "DENSITY": "cv",
+    "IN L": "audio",
+    "IN R": "audio",
+    "FREEZE": "gate",
+    "SEED": "cv",
+    "OUT L": "audio",
+    "OUT R": "audio"
+  },
+  "confidence": "high",
+  "source": "beads_quickstart.pdf p5, p8 and p12 (panel close-ups, jacks 1-8)",
+  "notes": "ASSIGN CV is the assignable CV input (7), marked only with the feedback/dry-wet/reverb icons; it routes to feedback, dry/wet or reverb amount selected by button [M]. TIME/SIZE/SHAPE/PITCH CV jacks are unlabelled (dotted lines to attenurandomizers). PITCH CV tracks 1V/oct. IN L normalled to IN R (mono when only L patched). OUT R unpatched sums both channels to OUT L. Not in VCV port list (no cross-check).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

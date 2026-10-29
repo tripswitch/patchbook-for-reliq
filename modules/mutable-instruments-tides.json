@@ -1,0 +1,46 @@
+{
+  "id": "mutable-instruments-tides",
+  "name": "Tides",
+  "maker": "Mutable instruments",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/mutable-instruments-tides",
+    "listedAs": "Mutable instruments Tides"
+  },
+  "inputs": [
+    "SLOPE CV",
+    "FM",
+    "V/OCT",
+    "SMOOTHNESS CV",
+    "SHAPE CV",
+    "SHIFT CV",
+    "TRIG",
+    "CLOCK"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "OUT 3",
+    "OUT 4"
+  ],
+  "signals": {
+    "SLOPE CV": "cv",
+    "FM": "audio",
+    "V/OCT": "pitch",
+    "SMOOTHNESS CV": "cv",
+    "SHAPE CV": "cv",
+    "SHIFT CV": "cv",
+    "TRIG": "gate",
+    "CLOCK": "clock",
+    "OUT 1": "cv",
+    "OUT 2": "cv",
+    "OUT 3": "cv",
+    "OUT 4": "cv"
+  },
+  "confidence": "high",
+  "source": "tides_quickstart.pdf p2 (panel diagram, jacks 1-4); Mutable Instruments | Tides.pdf p2",
+  "notes": "Only V/OCT is printed in the CV row; the other five CV jacks are linked by dotted lines to the SLOPE, FREQUENCY (FM, exponential via attenuverter), SMOOTHNESS, SHAPE and SHIFT/LEVEL attenuverters. Outputs printed 1-4; their function depends on output mode. VCV list confirms the 8 inputs (its output section is not listed in vcv_ports.txt).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

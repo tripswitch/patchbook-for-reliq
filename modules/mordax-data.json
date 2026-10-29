@@ -1,0 +1,46 @@
+{
+  "id": "mordax-data",
+  "name": "Mordax DATA",
+  "maker": "Mordax",
+  "hp": 16,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/mordax-data-silver",
+    "listedAs": "Mordax DATA (SILVER)"
+  },
+  "inputs": [
+    "IN 1",
+    "IN 2",
+    "IN 3",
+    "IN 4"
+  ],
+  "outputs": [
+    "THRU 1",
+    "THRU 2",
+    "THRU 3",
+    "THRU 4",
+    "OUT 1",
+    "OUT 2",
+    "OUT 3",
+    "OUT 4"
+  ],
+  "signals": {
+    "IN 1": "any",
+    "IN 2": "any",
+    "IN 3": "any",
+    "IN 4": "any",
+    "THRU 1": "any",
+    "THRU 2": "any",
+    "THRU 3": "any",
+    "THRU 4": "any",
+    "OUT 1": "any",
+    "OUT 2": "any",
+    "OUT 3": "any",
+    "OUT 4": "any"
+  },
+  "confidence": "high",
+  "source": "Mordax DATA - User Guide - 171002.pdf p4 (DATA Overview), p27; ModularGrid panel image (checked 21 Oct 2026)",
+  "notes": "Jack count and directions confirmed from the overview diagram: 4 inputs (top-left row), 4 buffered through jacks (row below, each a buffered copy of its input), 4 outputs (2x2 on the right). The diagram shows no printed labels, so names follow the manual's wording (INPUT1-4, Through Jacks, OUT1-OUT4). What each input/output does depends on the running program (e.g. Clock: IN 1 ext clk/run-stop, IN 2 reset, IN 3-4 CV, OUT 1-4 clocks).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

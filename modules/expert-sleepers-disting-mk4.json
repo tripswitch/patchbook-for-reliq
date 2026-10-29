@@ -1,0 +1,32 @@
+{
+  "id": "expert-sleepers-disting-mk4",
+  "name": "Disting mk4",
+  "maker": "Expert Sleepers",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/expert-sleepers-disting-mk4",
+    "listedAs": "Expert Sleepers Disting mk4"
+  },
+  "inputs": [
+    "Z",
+    "X",
+    "Y"
+  ],
+  "outputs": [
+    "A",
+    "B"
+  ],
+  "signals": {
+    "Z": "any",
+    "X": "any",
+    "Y": "any",
+    "A": "any",
+    "B": "any"
+  },
+  "confidence": "high",
+  "source": "disting_user_manual_4.17.pdf p.5 (Inputs, Outputs and Controls)",
+  "notes": "Z is the CV input summed with the Z knob; X and Y inputs and A and B outputs change role per algorithm (e.g. X = signal, Y = clock, A/B = stereo outs). Rear GT2 MIDI header (for the MIDI breakout) not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

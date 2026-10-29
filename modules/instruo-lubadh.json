@@ -1,0 +1,54 @@
+{
+  "id": "instruo-lubadh",
+  "name": "Lúbadh",
+  "maker": "Instruō",
+  "hp": 20,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-lubadh",
+    "listedAs": "Instruō Lúbadh"
+  },
+  "inputs": [
+    "IN L",
+    "IN R",
+    "REC L",
+    "REC R",
+    "SPEED CV L",
+    "SPEED CV R",
+    "RETRIG L",
+    "RETRIG R",
+    "AUX IN",
+    "AUX IN XFADE CV",
+    "AUX OUT XFADE CV"
+  ],
+  "outputs": [
+    "OUT L",
+    "OUT R",
+    "CLK OUT L",
+    "CLK OUT R",
+    "AUX OUT"
+  ],
+  "signals": {
+    "IN L": "audio",
+    "IN R": "audio",
+    "REC L": "gate",
+    "REC R": "gate",
+    "SPEED CV L": "cv",
+    "SPEED CV R": "cv",
+    "RETRIG L": "gate",
+    "RETRIG R": "gate",
+    "AUX IN": "audio",
+    "AUX IN XFADE CV": "cv",
+    "AUX OUT XFADE CV": "cv",
+    "OUT L": "audio",
+    "OUT R": "audio",
+    "CLK OUT L": "clock",
+    "CLK OUT R": "clock",
+    "AUX OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "Lubadh-Manual-Firmare-V2-A5-.pdf p5 (overview/key), p7-11",
+  "notes": "Manual calls the decks deck 1 (left) and deck 2 (right); L/R used to match the expander. REC = Record Gate Input. Normals: OUT L -> IN R and OUT R -> IN L (feedback loop); AUX IN normals to both deck inputs via the Aux Input Crossfade; AUX OUT is normalled from both deck outputs via the Aux Output Crossfade. Expander jacks listed separately under lubadh-expander.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

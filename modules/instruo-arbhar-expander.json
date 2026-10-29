@@ -1,0 +1,37 @@
+{
+  "id": "instruo-arbhar-expander",
+  "name": "Arbhar expander",
+  "maker": "Instruō",
+  "hp": 2,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-arbhar-expander",
+    "listedAs": "Instruō arbhar expander"
+  },
+  "inputs": [
+    "SPRAY CV",
+    "LAYER CV",
+    "DIRECTION CV",
+    "WINDOW CV",
+    "PITCH DEV CV",
+    "DUB CV",
+    "MOD CV",
+    "D/W CV"
+  ],
+  "outputs": [],
+  "signals": {
+    "SPRAY CV": "cv",
+    "LAYER CV": "cv",
+    "DIRECTION CV": "cv",
+    "WINDOW CV": "cv",
+    "PITCH DEV CV": "pitch",
+    "DUB CV": "cv",
+    "MOD CV": "cv",
+    "D/W CV": "cv"
+  },
+  "confidence": "high",
+  "source": "Arbhar-Manual-Firmware-1.6.a.pdf p.7 (CV Expansion Module panel and key)",
+  "notes": "2HP CV Expansion Module included with Arbhar, connects via ribbon to the main module. Panel prints SPRAY, LAYER, DUB, MOD, D / W; jacks 3-5 are icon-only (Grain Direction %, Grain Window, Pitch Deviation), named here from the manual key. MOD CV input's function depends on the configuration/alt modes set in firmware 1.6.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

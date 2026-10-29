@@ -1,0 +1,66 @@
+{
+  "id": "strymon-starlab",
+  "name": "StarLab",
+  "maker": "Strymon",
+  "hp": 28,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/strymon-starlab",
+    "listedAs": "Strymon StarLab"
+  },
+  "inputs": [
+    "LEFT IN",
+    "RIGHT IN",
+    "INFINITE",
+    "IN GATE",
+    "FAVORITE",
+    "SHIMMER",
+    "INTERVAL",
+    "HIGH DAMP",
+    "GLIMMER",
+    "LFO CLK IN",
+    "SPEED",
+    "DEPTH",
+    "EXT LFO IN",
+    "SIZE/PITCH",
+    "WET",
+    "DECAY",
+    "CLEAR",
+    "FEEDBACK",
+    "ECHO ON",
+    "TAP/TRIG"
+  ],
+  "outputs": [
+    "LEFT OUT",
+    "RIGHT OUT"
+  ],
+  "signals": {
+    "LEFT IN": "audio",
+    "RIGHT IN": "audio",
+    "INFINITE": "gate",
+    "IN GATE": "gate",
+    "FAVORITE": "gate",
+    "SHIMMER": "cv",
+    "INTERVAL": "cv",
+    "HIGH DAMP": "cv",
+    "GLIMMER": "cv",
+    "LFO CLK IN": "clock",
+    "SPEED": "cv",
+    "DEPTH": "cv",
+    "EXT LFO IN": "cv",
+    "SIZE/PITCH": "cv",
+    "WET": "cv",
+    "DECAY": "cv",
+    "CLEAR": "gate",
+    "FEEDBACK": "cv",
+    "ECHO ON": "gate",
+    "TAP/TRIG": "gate",
+    "LEFT OUT": "audio",
+    "RIGHT OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "StarLab_UserManual_RevA.pdf p5 (audio I/O), p9, p17, p21 (panel crops), pp33-35 (CV Inputs Quick Reference); full panel on p.3 confirms FAVORITE, HIGH DAMP, GLIMMER and SIZE/PITCH",
+  "notes": "18 CV inputs plus stereo audio in/out. CV jacks are printed with the parameter name only (the manual calls them e.g. 'DECAY CV'), so several share names with knobs. LEFT IN is the mono input. Panel crops confirm LEFT/RIGHT IN, LEFT/RIGHT OUT, INFINITE, IN GATE, SHIMMER, INTERVAL, LFO CLK IN, SPEED, DEPTH, EXT LFO IN, WET, DECAY, CLEAR, FEEDBACK, ECHO ON, TAP/TRIG; FAVORITE, HIGH DAMP, GLIMMER and SIZE/PITCH jack names come from the quick-reference text. No LFO output jack.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

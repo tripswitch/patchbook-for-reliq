@@ -1,0 +1,50 @@
+{
+  "id": "instruo-eas",
+  "name": "Eãs",
+  "maker": "Instruō",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-eas",
+    "listedAs": "Instruō eãs"
+  },
+  "inputs": [
+    "AND IN 1",
+    "AND IN 2",
+    "OR IN 1",
+    "OR IN 2",
+    "XOR IN 1",
+    "XOR IN 2",
+    "NOT IN"
+  ],
+  "outputs": [
+    "AND OUT",
+    "NAND OUT",
+    "OR OUT",
+    "NOR OUT",
+    "XOR OUT",
+    "XNOR OUT",
+    "NOT OUT"
+  ],
+  "signals": {
+    "AND IN 1": "gate",
+    "AND IN 2": "gate",
+    "OR IN 1": "gate",
+    "OR IN 2": "gate",
+    "XOR IN 1": "gate",
+    "XOR IN 2": "gate",
+    "NOT IN": "gate",
+    "AND OUT": "gate",
+    "NAND OUT": "gate",
+    "OR OUT": "gate",
+    "NOR OUT": "gate",
+    "XOR OUT": "gate",
+    "XNOR OUT": "gate",
+    "NOT OUT": "gate"
+  },
+  "confidence": "high",
+  "source": "Eas-Manual.pdf p.5 (panel overview, normalisation diagram and key)",
+  "notes": "Panel uses logic symbols only (∧, ~∧, ∨, ~∨, ⊻, ~⊻, ~), so labels are the manual's names. Normals cascade: AND IN 1 -> AND IN 2; NAND OUT -> OR IN 1; NOR OUT -> XOR IN 2; XOR OUT -> NOT IN.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Patchbook for Reliq",
+  "short_name": "Patchbook",
+  "description": "Unofficial patch notebook for the Reliq Breakout Module.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#e9ecef",
+  "theme_color": "#24272c",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "qu-bit-bloom",
+  "name": "Bloom",
+  "maker": "Qu-Bit Electronix",
+  "hp": 16,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/qu-bit-electronix-bloom",
+    "listedAs": "Qu-Bit Electronix Bloom"
+  },
+  "inputs": [
+    "ROOT",
+    "PATH",
+    "BRANCHES",
+    "MUTATION",
+    "RESET",
+    "RATE",
+    "CLOCK IN"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "GATE 1",
+    "GATE 2",
+    "CLOCK OUT"
+  ],
+  "signals": {
+    "ROOT": "pitch",
+    "PATH": "cv",
+    "BRANCHES": "cv",
+    "MUTATION": "cv",
+    "RESET": "clock",
+    "RATE": "cv",
+    "CLOCK IN": "clock",
+    "OUT 1": "pitch",
+    "OUT 2": "pitch",
+    "GATE 1": "gate",
+    "GATE 2": "gate",
+    "CLOCK OUT": "clock"
+  },
+  "confidence": "high",
+  "source": "QB_Bloom-xm4x.pdf p.7 (Marked Diagram), pp.10-19 Functional Overview",
+  "notes": "Panel prints both clock jacks as 'clock' (input in the right column, output in the bottom row); disambiguated as CLOCK IN / CLOCK OUT. CLOCK IN is only active when the Rate knob is fully CCW. ROOT/PATH/BRANCHES/MUTATION CV affect only the currently selected channel. RATE is the rate CV input (also used for firmware-update audio).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

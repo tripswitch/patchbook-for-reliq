@@ -1,0 +1,225 @@
+{
+  "format": "patchbook-for-reliq",
+  "schemaVersion": 1,
+  "exportedAt": "2026-10-29T12:00:00.000Z",
+  "patches": [
+    {
+      "id": "demo-patch",
+      "name": "Demo: drums, lead, pluck and grains",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
+      "notes": "A demo patch to show what Patchbook can hold. Everything here is a real connection on real modules.\n\nTrack 1 is a Drum track with a custom output routing: each drum sound gets its own Gate (1–4) and CV A (1–4) into the QD Quad Drum Voice. Track 5 plays Plaits and Track 6 plays Rings, both on standard CV/Gate (A = pitch, B = velocity, Gate = gate).\n\nMatrix: drums come back on In 1–2, Plaits on In 3–4, Rings on In 5–6. Out 1 feeds Plaits' aux into Rings. Outs 3–4 are a stereo send to Beads, which returns on In 7–8.\n\nClock Out runs at 24 PPQN into Pamela's PRO Workout (set its clock input to 24 PPQN to match), and Reset Out in RUN mode starts and stops it.",
+      "jacks": {
+        "g1": {
+          "role": "Kick trigger",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CH1 TRIG",
+          "color": "yellow"
+        },
+        "cv1a": {
+          "role": "Kick pitch (MIDI note)",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CV 1",
+          "color": "orange",
+          "note": "QD CV inputs assigned to each channel's pitch, so the drum track's note numbers tune the voices."
+        },
+        "g2": {
+          "role": "Snare trigger",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CH2 TRIG",
+          "color": "yellow"
+        },
+        "cv2a": {
+          "role": "Snare pitch (MIDI note)",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CV 2",
+          "color": "orange"
+        },
+        "g3": {
+          "role": "Hat trigger",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CH3 TRIG",
+          "color": "yellow"
+        },
+        "cv3a": {
+          "role": "Hat pitch (MIDI note)",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CV 3",
+          "color": "orange"
+        },
+        "g4": {
+          "role": "Perc trigger",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CH4 TRIG",
+          "color": "yellow"
+        },
+        "cv4a": {
+          "role": "Perc pitch (MIDI note)",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "CV 4",
+          "color": "orange"
+        },
+        "cv5a": {
+          "role": "Lead pitch",
+          "mod": "mutable-instruments-plaits",
+          "to": "V/OCT",
+          "color": "blue"
+        },
+        "cv5b": {
+          "role": "Velocity + LFO",
+          "mod": "mutable-instruments-plaits",
+          "to": "TIMBRE CV",
+          "color": "#6fb7ff",
+          "note": "Track 5 LFO on CVB, so timbre moves with velocity."
+        },
+        "g5": {
+          "role": "Lead gate",
+          "mod": "mutable-instruments-plaits",
+          "to": "TRIG",
+          "color": "blue"
+        },
+        "cv6a": {
+          "role": "Pluck pitch",
+          "mod": "mutable-instruments-rings",
+          "to": "V/OCT",
+          "color": "purple"
+        },
+        "cv6b": {
+          "role": "Velocity",
+          "mod": "mutable-instruments-rings",
+          "to": "BRIGHTNESS CV",
+          "color": "#b89cff"
+        },
+        "g6": {
+          "role": "Pluck strum",
+          "mod": "mutable-instruments-rings",
+          "to": "STRUM",
+          "color": "purple"
+        },
+        "mi1": {
+          "role": "Drums L",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "OUT L",
+          "color": "black"
+        },
+        "mi2": {
+          "role": "Drums R",
+          "mod": "vpme-qd-quad-drum-voice",
+          "to": "OUT R",
+          "color": "black"
+        },
+        "mi3": {
+          "role": "Plaits main",
+          "mod": "mutable-instruments-plaits",
+          "to": "OUT",
+          "color": "grey"
+        },
+        "mi4": {
+          "role": "Plaits aux",
+          "mod": "mutable-instruments-plaits",
+          "to": "AUX",
+          "color": "grey"
+        },
+        "mi5": {
+          "role": "Rings odd",
+          "mod": "mutable-instruments-rings",
+          "to": "ODD",
+          "color": "grey"
+        },
+        "mi6": {
+          "role": "Rings even",
+          "mod": "mutable-instruments-rings",
+          "to": "EVEN",
+          "color": "grey"
+        },
+        "mi7": {
+          "role": "Beads return L",
+          "mod": "mutable-instruments-beads",
+          "to": "OUT L",
+          "color": "#2bb5a5",
+          "led": "green"
+        },
+        "mi8": {
+          "role": "Beads return R",
+          "mod": "mutable-instruments-beads",
+          "to": "OUT R",
+          "color": "#2bb5a5",
+          "led": "green"
+        },
+        "mo1": {
+          "role": "Plaits into Rings",
+          "mod": "mutable-instruments-rings",
+          "to": "IN",
+          "color": "purple",
+          "note": "Matrix routes In 4 (Plaits aux) to Out 1, so Rings resonates with the lead."
+        },
+        "mo3": {
+          "role": "FX send L",
+          "mod": "mutable-instruments-beads",
+          "to": "IN L",
+          "color": "#2bb5a5",
+          "led": "white"
+        },
+        "mo4": {
+          "role": "FX send R",
+          "mod": "mutable-instruments-beads",
+          "to": "IN R",
+          "color": "#2bb5a5",
+          "led": "white"
+        },
+        "clk": {
+          "role": "Clock 24 PPQN",
+          "mod": "alm-pamelas-pro-workout",
+          "to": "CLK",
+          "color": "white",
+          "led": "bi"
+        },
+        "rst": {
+          "role": "Run gate",
+          "mod": "alm-pamelas-pro-workout",
+          "to": "RUN",
+          "color": "white",
+          "led": "red",
+          "note": "Breakout reset mode set to RUN: high while Reliq plays, so Pamela's starts and stops with it."
+        }
+      },
+      "tracks": {
+        "1": {
+          "name": "Drums",
+          "custom": true,
+          "mod": "vpme-qd-quad-drum-voice",
+          "std": "1V/Oct – Normal"
+        },
+        "5": {
+          "name": "Plaits lead",
+          "mod": "mutable-instruments-plaits",
+          "std": "1V/Oct – Normal"
+        },
+        "6": {
+          "name": "Rings pluck",
+          "mod": "mutable-instruments-rings",
+          "std": "1V/Oct – Normal"
+        }
+      },
+      "brk": {
+        "clock": "1/96 (24 PPQN)",
+        "reset": "RUN",
+        "gate": "10"
+      }
+    }
+  ],
+  "racks": [
+    {
+      "id": "demo-rack",
+      "name": "Demo rack",
+      "modules": [
+        "vpme-qd-quad-drum-voice",
+        "mutable-instruments-plaits",
+        "mutable-instruments-rings",
+        "mutable-instruments-beads",
+        "alm-pamelas-pro-workout"
+      ],
+      "updatedAt": "2026-10-29T12:00:00.000Z"
+    }
+  ],
+  "moduleOverrides": []
+}

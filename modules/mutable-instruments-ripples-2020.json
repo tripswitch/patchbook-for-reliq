@@ -1,0 +1,40 @@
+{
+  "id": "mutable-instruments-ripples-2020",
+  "name": "Ripples (2020)",
+  "maker": "Mutable instruments",
+  "hp": 8,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/mutable-instruments-ripples-2020",
+    "listedAs": "Mutable instruments Ripples (2020)"
+  },
+  "inputs": [
+    "IN 1",
+    "IN 2",
+    "FM",
+    "RESO CV",
+    "V/OCT",
+    "LEVEL"
+  ],
+  "outputs": [
+    "HP",
+    "BP",
+    "LP"
+  ],
+  "signals": {
+    "IN 1": "audio",
+    "IN 2": "audio",
+    "FM": "audio",
+    "RESO CV": "cv",
+    "V/OCT": "pitch",
+    "LEVEL": "cv",
+    "HP": "audio",
+    "BP": "audio",
+    "LP": "audio"
+  },
+  "confidence": "high",
+  "source": "ripples_quickstart.pdf p2 (panel diagram, 2020 version); Mutable Instruments | Ripples.pdf p1-2",
+  "notes": "FM and RESO CV jacks have no printed label (dotted lines to the FM attenuverter and RESO knob). IN 1 is soft-clipped, IN 2 clean; both mixed. LEVEL is a VCA CV for the LP output, normalled to +7V. Outputs are printed as HP/BP/LP filter-shape icons. VCV port list (5 in / 4 out incl. LP4 VCA) reflects the original Ripples, not the 2020 version, so counts differ by design.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

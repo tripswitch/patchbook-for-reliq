@@ -1,0 +1,46 @@
+{
+  "id": "alm-pamelas-pro-workout",
+  "name": "Pamela's PRO Workout",
+  "maker": "ALM Busy Circuits",
+  "hp": 8,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/alm-busy-circuits-pamela-s-pro-workout",
+    "listedAs": "ALM Busy Circuits Pamela's PRO Workout"
+  },
+  "inputs": [
+    "CLK",
+    "RUN",
+    "CV 1",
+    "CV 2"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "OUT 3",
+    "OUT 4",
+    "OUT 5",
+    "OUT 6",
+    "OUT 7",
+    "OUT 8"
+  ],
+  "signals": {
+    "CLK": "clock",
+    "RUN": "clock",
+    "CV 1": "cv",
+    "CV 2": "cv",
+    "OUT 1": "any",
+    "OUT 2": "any",
+    "OUT 3": "any",
+    "OUT 4": "any",
+    "OUT 5": "any",
+    "OUT 6": "any",
+    "OUT 7": "any",
+    "OUT 8": "any"
+  },
+  "confidence": "high",
+  "source": "alm034-manual.pdf p.6 (3.1 Panel Layout); p.19-20 (6.1/6.2 input settings)",
+  "notes": "CLK input can be set to external clock (PPQN setting) or used as an extra CV input (CV 3). RUN input can be set to RUN (gate), RESET (trigger) or CV (CV 4). Outputs 1-8 are 0-5V with LEDs; panel prints only the numbers 1-8 under an 'Outputs' heading. Rear expander header not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

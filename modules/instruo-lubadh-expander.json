@@ -1,0 +1,37 @@
+{
+  "id": "instruo-lubadh-expander",
+  "name": "Lúbadh expander",
+  "maker": "Instruō",
+  "hp": 2,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-lubadh-expander",
+    "listedAs": "Instruō Lúbadh expander"
+  },
+  "inputs": [
+    "LENGTH L",
+    "START L",
+    "TIME L",
+    "ERASE L",
+    "LENGTH R",
+    "START R",
+    "TIME R",
+    "ERASE R"
+  ],
+  "outputs": [],
+  "signals": {
+    "LENGTH L": "cv",
+    "START L": "cv",
+    "TIME L": "cv",
+    "ERASE L": "gate",
+    "LENGTH R": "cv",
+    "START R": "cv",
+    "TIME R": "cv",
+    "ERASE R": "gate"
+  },
+  "confidence": "high",
+  "source": "Lubadh-Manual-Firmare-V2-A5-.pdf p6 (CV Expansion Module key), p13",
+  "notes": "2HP CV Expansion Module, connected to Lúbadh by 12-pin ribbon. Top four jacks are the left deck, bottom four the right deck. ERASE is a trigger/gate input that erases that deck's buffer. Inputs only, no outputs. (The separate USB expander has no patch jacks.)",
+  "contributors": [
+    "tripswitch"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "instruo-1f",
+  "name": "[1]f",
+  "maker": "Instruō",
+  "hp": 2,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-1-f",
+    "listedAs": "Instruō [1]f"
+  },
+  "inputs": [
+    "IN 1",
+    "IN 2"
+  ],
+  "outputs": [
+    "OUT"
+  ],
+  "signals": {
+    "IN 1": "any",
+    "IN 2": "any",
+    "OUT": "any"
+  },
+  "confidence": "high",
+  "source": "1f-Manual-1.pdf p5 (overview/key), p6",
+  "notes": "With nothing patched the output gives a unipolar DC offset (+10V or -10V per polarity switch) scaled by the fader; with both inputs patched it crossfades IN 1 (fader up) to IN 2 (fader down).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

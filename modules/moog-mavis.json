@@ -1,0 +1,70 @@
+{
+  "id": "moog-mavis",
+  "name": "Mavis",
+  "maker": "Moog Music Inc.",
+  "hp": 44,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/moog-music-inc-mavis",
+    "listedAs": "Moog Music Inc. Mavis"
+  },
+  "inputs": [
+    "FOLD IN",
+    "1V/OCT",
+    "PWM",
+    "ONE (-5)",
+    "LFO RATE",
+    "CUTOFF",
+    "TWO",
+    "GATE",
+    "VCA CV",
+    "S+H (VCO)",
+    "S+H GATE (LFO)",
+    "ATTN (+5)",
+    "MULT"
+  ],
+  "outputs": [
+    "HP/VCA",
+    "KB CV",
+    "ONE",
+    "VCO",
+    "ONE+TWO",
+    "LFO",
+    "EG",
+    "S+H",
+    "ATTN",
+    "MULT 1",
+    "MULT 2"
+  ],
+  "signals": {
+    "FOLD IN": "audio",
+    "1V/OCT": "pitch",
+    "PWM": "cv",
+    "ONE (-5)": "any",
+    "LFO RATE": "cv",
+    "CUTOFF": "cv",
+    "TWO": "any",
+    "GATE": "gate",
+    "VCA CV": "cv",
+    "S+H (VCO)": "any",
+    "S+H GATE (LFO)": "gate",
+    "ATTN (+5)": "any",
+    "MULT": "any",
+    "HP/VCA": "audio",
+    "KB CV": "pitch",
+    "ONE": "any",
+    "VCO": "audio",
+    "ONE+TWO": "any",
+    "LFO": "cv",
+    "EG": "cv",
+    "S+H": "cv",
+    "ATTN": "any",
+    "MULT 1": "any",
+    "MULT 2": "any"
+  },
+  "confidence": "high",
+  "source": "MAVIS_MANUAL_V2_06.27.2022.pdf p.36 (The Patchbay, panel diagram) and pp.36-44 jack descriptions",
+  "notes": "24-point patchbay, 13 inputs / 11 outputs (outputs in reverse text on panel). HP/VCA is the panel's headphone-symbol /VCA jack (R1;C1): headphone or line-level main output, -5 to +5V. ONE (-5) is normalled to -5V and ATTN (+5) to +5V; S+H (VCO) normalled to VCO, S+H GATE (LFO) normalled to LFO. MULT is passive: MULT input feeds MULT 1 and MULT 2. 12V DC barrel power is on the rear, not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

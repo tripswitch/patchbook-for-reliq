@@ -1,0 +1,46 @@
+{
+  "id": "4ms-ensemble-oscillator",
+  "name": "Ensemble Oscillator",
+  "maker": "4ms Company",
+  "hp": 16,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/4ms-company-ensemble-oscillator",
+    "listedAs": "4ms Company Ensemble Oscillator"
+  },
+  "inputs": [
+    "PITCH 1V/OCT",
+    "ROOT 1V/OCT",
+    "SCALE",
+    "SPREAD",
+    "CROSS FM",
+    "LEARN",
+    "BALANCE",
+    "TWIST",
+    "WARP",
+    "FREEZE"
+  ],
+  "outputs": [
+    "OUT A",
+    "OUT B"
+  ],
+  "signals": {
+    "PITCH 1V/OCT": "pitch",
+    "ROOT 1V/OCT": "pitch",
+    "SCALE": "cv",
+    "SPREAD": "cv",
+    "CROSS FM": "cv",
+    "LEARN": "gate",
+    "BALANCE": "cv",
+    "TWIST": "cv",
+    "WARP": "cv",
+    "FREEZE": "gate",
+    "OUT A": "audio",
+    "OUT B": "audio"
+  },
+  "confidence": "high",
+  "source": "Ensemble-Osc-manual.pdf p.1 (panel diagram), pp.6-8 Controls and Jacks",
+  "notes": "With only OUT A patched, both stereo channels are summed into OUT A (mono). LEARN and FREEZE are gate/trigger inputs; LEARN only used in Learn mode.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

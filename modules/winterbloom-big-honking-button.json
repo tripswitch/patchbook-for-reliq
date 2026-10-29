@@ -1,0 +1,30 @@
+{
+  "id": "winterbloom-big-honking-button",
+  "name": "Big Honking Button",
+  "maker": "Winterbloom",
+  "hp": 8,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/winterbloom-big-honking-button-black-panel",
+    "listedAs": "Winterbloom Big Honking Button (black panel)"
+  },
+  "inputs": [
+    "GATE IN",
+    "PITCH CV"
+  ],
+  "outputs": [
+    "GATE OUT",
+    "AUDIO OUT"
+  ],
+  "signals": {
+    "GATE IN": "gate",
+    "PITCH CV": "pitch",
+    "GATE OUT": "gate",
+    "AUDIO OUT": "audio"
+  },
+  "confidence": "medium",
+  "source": "https://raw.githubusercontent.com/wntrblm/Big_Honking_Button/main/user_guide/docs/index.md (Winterbloom BHB user guide) ; https://winterbloom.com/shop/big-honking-button; ModularGrid panel image (checked 21 Oct 2026) (jack count matches)",
+  "notes": "Labels are the user guide's names (panel image not checked). GATE IN accepts gate/trigger; PITCH CV is 1V/oct, -5 to +5V (units marked v4, pre-2021, only -2 to +2V). GATE OUT is 0/5V. Jack functions are reprogrammable via CircuitPython but default hardware directions are as listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

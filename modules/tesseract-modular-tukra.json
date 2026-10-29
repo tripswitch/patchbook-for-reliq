@@ -1,0 +1,62 @@
+{
+  "id": "tesseract-modular-tukra",
+  "name": "Tukra",
+  "maker": "Tesseract Modular",
+  "hp": 32,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/tesseract-modular-tukra",
+    "listedAs": "Tesseract Modular Tukra"
+  },
+  "inputs": [
+    "CLOCK IN",
+    "RESET IN",
+    "CV IN 1",
+    "CV IN 2",
+    "CV IN 3",
+    "CV IN 4",
+    "MIDI IN"
+  ],
+  "outputs": [
+    "CLOCK OUT",
+    "RESET OUT",
+    "TRIG 1",
+    "TRIG 2",
+    "TRIG 3",
+    "TRIG 4",
+    "TRIG 5",
+    "TRIG 6",
+    "TRIG 7",
+    "TRIG 8",
+    "MIDI OUT",
+    "L OUT",
+    "R OUT"
+  ],
+  "signals": {
+    "CLOCK IN": "clock",
+    "RESET IN": "clock",
+    "CV IN 1": "cv",
+    "CV IN 2": "cv",
+    "CV IN 3": "cv",
+    "CV IN 4": "cv",
+    "MIDI IN": "any",
+    "CLOCK OUT": "clock",
+    "RESET OUT": "clock",
+    "TRIG 1": "gate",
+    "TRIG 2": "gate",
+    "TRIG 3": "gate",
+    "TRIG 4": "gate",
+    "TRIG 5": "gate",
+    "TRIG 6": "gate",
+    "TRIG 7": "gate",
+    "TRIG 8": "gate",
+    "MIDI OUT": "any",
+    "L OUT": "audio",
+    "R OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "Tukra - user guide.pdf p.5 (Inputs and outputs, jack panel image)",
+  "notes": "Panel prints CLOCK/RESET in both columns and MIDI twice: inverted (white-on-black) labels are outputs. Trigger/gate outs printed as 1-8. MIDI jacks are TRS (input auto-detects A/B; output standard set by rear switches). L/R OUT carry audio mix or CV depending on LR/TEO config. USB ports not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

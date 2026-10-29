@@ -1,0 +1,34 @@
+{
+  "id": "instruo-vinca",
+  "name": "Vincâ",
+  "maker": "Instruō",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-vinca-",
+    "listedAs": "Instruō vincâ"
+  },
+  "inputs": [
+    "IN 1A",
+    "IN 1B",
+    "IN 2",
+    "CV 2"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2"
+  ],
+  "signals": {
+    "IN 1A": "audio",
+    "IN 1B": "audio",
+    "IN 2": "audio",
+    "CV 2": "cv",
+    "OUT 1": "audio",
+    "OUT 2": "audio"
+  },
+  "confidence": "high",
+  "source": "vinca-Manual-A5.pdf p5 (overview/key), p6-9",
+  "notes": "Panel uses only I/O icons; names from manual key. IN 1B normalled to +5V; CV 2 (channel 2 CV input) normalled to +5V and half-wave rectified. OUT 1 normals into channel 2 per Mode switch (parallel = summed at OUT 2, series = into IN 2). Rear IN/OUT 'back jacks' for chaining vincâs are on the PCB, not the front panel, so excluded.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

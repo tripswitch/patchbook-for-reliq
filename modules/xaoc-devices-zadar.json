@@ -1,0 +1,46 @@
+{
+  "id": "xaoc-devices-zadar",
+  "name": "Zadar",
+  "maker": "Xaoc Devices",
+  "hp": 10,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/xaoc-devices-zadar",
+    "listedAs": "Xaoc Devices Zadar"
+  },
+  "inputs": [
+    "TRIG A",
+    "TRIG B",
+    "TRIG C",
+    "TRIG D",
+    "ASGN A",
+    "ASGN B",
+    "ASGN C",
+    "ASGN D"
+  ],
+  "outputs": [
+    "OUT A",
+    "OUT B",
+    "OUT C",
+    "OUT D"
+  ],
+  "signals": {
+    "TRIG A": "gate",
+    "TRIG B": "gate",
+    "TRIG C": "gate",
+    "TRIG D": "gate",
+    "ASGN A": "cv",
+    "ASGN B": "cv",
+    "ASGN C": "cv",
+    "ASGN D": "cv",
+    "OUT A": "cv",
+    "OUT B": "cv",
+    "OUT C": "cv",
+    "OUT D": "cv"
+  },
+  "confidence": "high",
+  "source": "xaoc_zadar_manual_2.0.pdf p3 (fig. 1 front panel), p4",
+  "notes": "Per channel a-d: trig input (trigger/gate), asgn assignable CV input (-10 to +10V), envelope out (0-10V). The panel labels channels with letters, so outputs are OUT A-D, not ENV 1-4.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

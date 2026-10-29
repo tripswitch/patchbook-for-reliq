@@ -1,0 +1,34 @@
+{
+  "id": "thonk-plinky-expander",
+  "name": "Plinky Expander",
+  "maker": "Thonk",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/thonk-plinky-expander",
+    "listedAs": "Thonk Plinky Expander"
+  },
+  "inputs": [
+    "MIDI IN"
+  ],
+  "outputs": [
+    "A",
+    "B",
+    "X",
+    "Y",
+    "MIDI OUT"
+  ],
+  "signals": {
+    "MIDI IN": "any",
+    "A": "cv",
+    "B": "cv",
+    "X": "cv",
+    "Y": "cv",
+    "MIDI OUT": "any"
+  },
+  "confidence": "medium",
+  "source": "https://plinkysynth.com/docs/manual (Expander section) ; cross-check https://modulargrid.net/e/thonk-plinky-expander (4HP Thonk version); ModularGrid panel image (checked 21 Oct 2026) (jack count matches)",
+  "notes": "A/B/X/Y are bipolar -5V to +5V CV outputs of Plinky's modulation (A/B follow knobs, X/Y accelerometer). MIDI IN is TRS (type A or B); MIDI OUT is TRS type A. USB (B on the 4HP DIY version, C on the 2HP revision) not listed. Official docs now describe a 2HP revision of the 'classic 4HP DIY Plinky Expander'; both have the same jack set per sources, panel labels not visually confirmed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

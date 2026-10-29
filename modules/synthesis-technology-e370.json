@@ -1,0 +1,70 @@
+{
+  "id": "synthesis-technology-e370",
+  "name": "E370 Quad Morphing VCO",
+  "maker": "Synthesis Technology",
+  "hp": 54,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/synthesis-technology-e370-quad-morphing-vco-black-panel-",
+    "listedAs": "Synthesis Technology E370 Quad Morphing VCO (black panel)"
+  },
+  "inputs": [
+    "1V/OCT 1",
+    "FM 1",
+    "SYNC 1",
+    "CV X1",
+    "CV Y1",
+    "1V/OCT 2",
+    "FM 2",
+    "SYNC 2",
+    "CV X2",
+    "CV Y2",
+    "1V/OCT 3",
+    "FM 3",
+    "SYNC 3",
+    "CV X3",
+    "CV Y3",
+    "1V/OCT 4",
+    "FM 4",
+    "SYNC 4",
+    "CV X4",
+    "CV Y4"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "OUT 3",
+    "OUT 4"
+  ],
+  "signals": {
+    "1V/OCT 1": "pitch",
+    "FM 1": "audio",
+    "SYNC 1": "audio",
+    "CV X1": "cv",
+    "CV Y1": "cv",
+    "1V/OCT 2": "pitch",
+    "FM 2": "audio",
+    "SYNC 2": "audio",
+    "CV X2": "cv",
+    "CV Y2": "cv",
+    "1V/OCT 3": "pitch",
+    "FM 3": "audio",
+    "SYNC 3": "audio",
+    "CV X3": "cv",
+    "CV Y3": "cv",
+    "1V/OCT 4": "pitch",
+    "FM 4": "audio",
+    "SYNC 4": "audio",
+    "CV X4": "cv",
+    "CV Y4": "cv",
+    "OUT 1": "audio",
+    "OUT 2": "audio",
+    "OUT 3": "audio",
+    "OUT 4": "audio"
+  },
+  "confidence": "high",
+  "source": "E370_Quick_V14.pdf p.1 (panel photo) + p.1 'Controls and Jacks'",
+  "notes": "All 16 CV inputs and 4 SYNC inputs are menu-assignable to any VCO (default: no sharing). Each OUT is a mixer bus of all 4 VCOs (default = its own VCO only).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

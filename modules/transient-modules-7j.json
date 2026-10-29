@@ -1,0 +1,32 @@
+{
+  "id": "transient-modules-7j",
+  "name": "7J",
+  "maker": "Transient Modules",
+  "hp": 8,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/transient-modules-7j",
+    "listedAs": "Transient Modules 7J"
+  },
+  "inputs": [
+    "IN X",
+    "IN Y"
+  ],
+  "outputs": [
+    "OUT X",
+    "OUT Y",
+    "GATE OUT"
+  ],
+  "signals": {
+    "IN X": "cv",
+    "IN Y": "cv",
+    "OUT X": "cv",
+    "OUT Y": "cv",
+    "GATE OUT": "gate"
+  },
+  "confidence": "high",
+  "source": "7J_BUILD_DOC.pdf p.6 (step 25 panel close-up) and p.7 (finished panel photo)",
+  "notes": "5 mono jacks per parts list. Output jacks have black rings on the panel (OUT X, OUT Y, and the top jack marked only with a triangle next to the GATE button, i.e. the gate output). IN X / IN Y have attenuator knobs and OFFS X/Y offsets; U/B range switches per axis. Gate output label is the manual-derived name; panel shows only a triangle symbol.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

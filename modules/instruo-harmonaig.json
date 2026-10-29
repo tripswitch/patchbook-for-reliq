@@ -1,0 +1,40 @@
+{
+  "id": "instruo-harmonaig",
+  "name": "Harmonàig",
+  "maker": "Instruō",
+  "hp": 18,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-harmonaig",
+    "listedAs": "Instruō Harmonaig"
+  },
+  "inputs": [
+    "CV IN",
+    "INVERSION CV",
+    "VOICING CV",
+    "CHORD QUALITY CV"
+  ],
+  "outputs": [
+    "R",
+    "3",
+    "5",
+    "7",
+    "GATE"
+  ],
+  "signals": {
+    "CV IN": "pitch",
+    "INVERSION CV": "cv",
+    "VOICING CV": "cv",
+    "CHORD QUALITY CV": "cv",
+    "R": "pitch",
+    "3": "pitch",
+    "5": "pitch",
+    "7": "pitch",
+    "GATE": "gate"
+  },
+  "confidence": "high",
+  "source": "Harmoniag-Manual-A5.pdf p.5 (panel overview and key)",
+  "notes": "Main CV input has no printed label (manual: CV Input, with attenuverter). Chord Quality CV jack is printed just 'CV'. Outputs R/3/5/7 are the root, third, fifth and seventh chord-tone CV outputs. GATE outputs triggers in Quantiser Mode and gates in Performance Mode.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

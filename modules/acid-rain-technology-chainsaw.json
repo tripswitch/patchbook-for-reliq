@@ -1,0 +1,38 @@
+{
+  "id": "acid-rain-technology-chainsaw",
+  "name": "Chainsaw",
+  "maker": "Acid Rain Technology",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/acid-rain-technology-chainsaw",
+    "listedAs": "Acid Rain Technology Chainsaw"
+  },
+  "inputs": [
+    "DETUNE",
+    "SHAPE",
+    "V/O 1",
+    "V/O 2",
+    "V/O 3",
+    "FM"
+  ],
+  "outputs": [
+    "OUT L",
+    "OUT R"
+  ],
+  "signals": {
+    "DETUNE": "cv",
+    "SHAPE": "cv",
+    "V/O 1": "pitch",
+    "V/O 2": "pitch",
+    "V/O 3": "pitch",
+    "FM": "audio",
+    "OUT L": "audio",
+    "OUT R": "audio"
+  },
+  "confidence": "high",
+  "source": "Chainsaw_Manual_1.1.pdf p.1 (panel diagram, jacks 6-13)",
+  "notes": "SHAPE (jack 7) has no text label on the panel, only a saw-to-square icon; it is the waveshape CV. Each voice is only active when a cable is in its V/O jack. FM is linear FM for all voices. Either output alone works for mono.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

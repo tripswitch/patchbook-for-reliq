@@ -1,0 +1,23 @@
+{
+  "id": "music-thing-volts",
+  "name": "Volts",
+  "maker": "Music Thing Modular",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/music-thing-modular-volts",
+    "listedAs": "Music Thing Modular Volts"
+  },
+  "inputs": [],
+  "outputs": [
+    "OUT"
+  ],
+  "signals": {
+    "OUT": "cv"
+  },
+  "confidence": "high",
+  "source": "Volts build guide photo (volts-Build.jpg) (single jack on PCB); Volts panel artwork (github.com/TomWhitwell/Volts, Collateral/Volts Panel/Volts_Panel artwork.pdf); https://www.musicthing.co.uk/Turing-Volts-Expander/",
+  "notes": "Expander: five knobs and one output jack. Connects to the Turing Machine via rear 16-way ribbon (not listed).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

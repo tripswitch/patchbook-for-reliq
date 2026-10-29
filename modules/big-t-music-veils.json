@@ -1,0 +1,46 @@
+{
+  "id": "big-t-music-veils",
+  "name": "Veils",
+  "maker": "Big T Music",
+  "hp": 10,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/big-t-music-%E3%83%99%E3%83%BC%E3%83%AB%E3%82%BA-veils",
+    "listedAs": "Big T Music ベールズ (VEILS)"
+  },
+  "inputs": [
+    "CV 1",
+    "CV 2",
+    "CV 3",
+    "CV 4",
+    "IN 1",
+    "IN 2",
+    "IN 3",
+    "IN 4"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "OUT 3",
+    "OUT 4"
+  ],
+  "signals": {
+    "CV 1": "cv",
+    "CV 2": "cv",
+    "CV 3": "cv",
+    "CV 4": "cv",
+    "IN 1": "audio",
+    "IN 2": "audio",
+    "IN 3": "audio",
+    "IN 4": "audio",
+    "OUT 1": "audio",
+    "OUT 2": "audio",
+    "OUT 3": "audio",
+    "OUT 4": "audio"
+  },
+  "confidence": "high",
+  "source": "veils_quickstart-2.pdf p2 (Mutable Veils panel diagram; Big T Music 1:1 replica)",
+  "notes": "Big T Music replica of Mutable Veils V2; panel per Mutable quickstart. Panel prints CV and IN rows; channel numbers added. Gain CV inputs normalled to +8V. Unpatched outputs chain into the next channel (OUT 4 sums all four if 1-3 are unpatched). No VCV ports listed for Veils.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

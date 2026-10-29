@@ -1,0 +1,42 @@
+{
+  "id": "mutable-instruments-rings",
+  "name": "Rings",
+  "maker": "Mutable instruments",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/mutable-instruments-rings",
+    "listedAs": "Mutable instruments Rings"
+  },
+  "inputs": [
+    "BRIGHTNESS CV",
+    "FREQ CV",
+    "DAMPING CV",
+    "STRUCTURE CV",
+    "POSITION CV",
+    "STRUM",
+    "V/OCT",
+    "IN"
+  ],
+  "outputs": [
+    "ODD",
+    "EVEN"
+  ],
+  "signals": {
+    "BRIGHTNESS CV": "cv",
+    "FREQ CV": "cv",
+    "DAMPING CV": "cv",
+    "STRUCTURE CV": "cv",
+    "POSITION CV": "cv",
+    "STRUM": "gate",
+    "V/OCT": "pitch",
+    "IN": "audio",
+    "ODD": "audio",
+    "EVEN": "audio"
+  },
+  "confidence": "high",
+  "source": "Mutable Instruments | Rings.pdf p3 (controls, inputs and outputs diagram); rings_quickstart.pdf p2",
+  "notes": "Top row of five CV jacks is unlabelled on the panel (dotted lines to BRIGHTNESS, FREQUENCY, DAMPING, STRUCTURE, POSITION attenuverters). FREQ CV is normalled to a 1/12V offset. STRUM normalled to step detector on V/OCT and transient detector on IN; IN normalled to internal exciter. ODD/EVEN: with only one jack inserted both signals are mixed. Count matches VCV (8 in / 2 out).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

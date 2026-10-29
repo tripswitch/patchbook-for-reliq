@@ -1,0 +1,42 @@
+{
+  "id": "erica-synths-black-hole-dsp2",
+  "name": "Black Hole DSP2",
+  "maker": "Erica Synths",
+  "hp": 16,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/erica-synths-black-hole-dsp2",
+    "listedAs": "Erica Synths Black Hole DSP2"
+  },
+  "inputs": [
+    "IN L",
+    "IN R",
+    "PARAM1 CV",
+    "PARAM2 CV",
+    "PARAM3 CV",
+    "PATCH CV",
+    "CRUSH CV",
+    "DRY/WET CV"
+  ],
+  "outputs": [
+    "OUT L",
+    "OUT R"
+  ],
+  "signals": {
+    "IN L": "audio",
+    "IN R": "audio",
+    "PARAM1 CV": "cv",
+    "PARAM2 CV": "cv",
+    "PARAM3 CV": "cv",
+    "PATCH CV": "cv",
+    "CRUSH CV": "cv",
+    "DRY/WET CV": "cv",
+    "OUT L": "audio",
+    "OUT R": "audio"
+  },
+  "confidence": "high",
+  "source": "Erica Synths Black Hole DSP II user manual via https://cn.juno.co.uk/downloads/manual/690950-01U.pdf/ ; https://www.ericasynths.lv/shop/eurorack-modules/by-series/black-series/black-hole-dsp2; ModularGrid panel image (checked 21 Oct 2026)",
+  "notes": "No local manual; manual text was only readable in garbled form, panel image not seen. IN L is normalled to IN R. PATCH CV selects the effect; PARAM 1-3 CV inputs pair with the three parameter knobs; CRUSH CV (sample-rate/DSP clock CV) has an attenuator knob; DRY/WET CV modulates the analogue mix. Exact printed wording of the PARAM CV and DRY/WET jack labels unconfirmed. No clock/tap input found.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

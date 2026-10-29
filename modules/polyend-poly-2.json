@@ -1,0 +1,66 @@
+{
+  "id": "polyend-poly-2",
+  "name": "Poly 2",
+  "maker": "Polyend",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/polyend-poly-2",
+    "listedAs": "Polyend Poly 2"
+  },
+  "inputs": [
+    "MIDI IN (TRS)"
+  ],
+  "outputs": [
+    "GATE 1",
+    "GATE 2",
+    "GATE 3",
+    "GATE 4",
+    "PITCH 1",
+    "PITCH 2",
+    "PITCH 3",
+    "PITCH 4",
+    "CV 1",
+    "CV 2",
+    "CV 3",
+    "CV 4",
+    "CV 5",
+    "CV 6",
+    "CV 7",
+    "CV 8",
+    "CV 9",
+    "CV 10",
+    "CV 11",
+    "CV 12",
+    "MIDI OUT (TRS)"
+  ],
+  "signals": {
+    "MIDI IN (TRS)": "any",
+    "GATE 1": "gate",
+    "GATE 2": "gate",
+    "GATE 3": "gate",
+    "GATE 4": "gate",
+    "PITCH 1": "pitch",
+    "PITCH 2": "pitch",
+    "PITCH 3": "pitch",
+    "PITCH 4": "pitch",
+    "CV 1": "cv",
+    "CV 2": "cv",
+    "CV 3": "cv",
+    "CV 4": "cv",
+    "CV 5": "cv",
+    "CV 6": "cv",
+    "CV 7": "cv",
+    "CV 8": "cv",
+    "CV 9": "cv",
+    "CV 10": "cv",
+    "CV 11": "cv",
+    "CV 12": "cv",
+    "MIDI OUT (TRS)": "any"
+  },
+  "confidence": "high",
+  "source": "Poly 2 v.2.05.pdf p.2-3 (Inputs & outputs list, panel photo p.3); p.3-4 (Voices)",
+  "notes": "Panel rows labelled 'Gate 1-4', 'Pitch 1-4', 'CV 1-4', 'CV 5-8', 'CV 9-12'. With more than 4 voices, CV 1-4 become Gates 5-8 and CV 5-8 become Pitches 5-8; CV outputs are otherwise user-assignable (velocity, CC, clock, start/stop etc.). MIDI In/Out are 3.5mm TRS type-B minijacks. USB-A Host and USB-B ports not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

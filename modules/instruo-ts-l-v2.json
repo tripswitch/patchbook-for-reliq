@@ -1,0 +1,42 @@
+{
+  "id": "instruo-ts-l-v2",
+  "name": "Tš-L v2",
+  "maker": "Instruō",
+  "hp": 6,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-ts-l-v2",
+    "listedAs": "Instruō Tš-L v2"
+  },
+  "inputs": [
+    "1V/OCT",
+    "SYNC",
+    "FM",
+    "PWM CV",
+    "FOLD CV"
+  ],
+  "outputs": [
+    "SQUARE/SUB",
+    "TRI",
+    "SINE",
+    "PULSE",
+    "FOLD"
+  ],
+  "signals": {
+    "1V/OCT": "pitch",
+    "SYNC": "audio",
+    "FM": "audio",
+    "PWM CV": "cv",
+    "FOLD CV": "cv",
+    "SQUARE/SUB": "audio",
+    "TRI": "audio",
+    "SINE": "audio",
+    "PULSE": "audio",
+    "FOLD": "audio"
+  },
+  "confidence": "high",
+  "source": "Ts-L-V2-Manual.pdf p.5 (panel overview and key)",
+  "notes": "SYNC is a soft sync input. FM has a Lin/Exp toggle. SQUARE/SUB output switches between square and sub-octave via the Sub toggle; square/tri/sine outputs are icon-labelled on the panel. FOLD CV (Wavefold CV Input) has no printed label of its own. PULSE is the PWM output.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

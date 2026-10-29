@@ -1,0 +1,46 @@
+{
+  "id": "patching-panda-ephemere",
+  "name": "Ephemere",
+  "maker": "Patching Panda",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/patching-panda-ephemere-silver-panel",
+    "listedAs": "Patching Panda Ephemere (silver panel)"
+  },
+  "inputs": [
+    "INPUT 1",
+    "INPUT 2",
+    "RECORD 1",
+    "RECORD 2",
+    "PLAY/RES 1",
+    "PLAY/RES 2",
+    "SCAN 1",
+    "SCAN 2",
+    "SPEED 1",
+    "SPEED 2"
+  ],
+  "outputs": [
+    "OUT1",
+    "OUT2"
+  ],
+  "signals": {
+    "INPUT 1": "audio",
+    "INPUT 2": "audio",
+    "RECORD 1": "gate",
+    "RECORD 2": "gate",
+    "PLAY/RES 1": "gate",
+    "PLAY/RES 2": "gate",
+    "SCAN 1": "cv",
+    "SCAN 2": "cv",
+    "SPEED 1": "cv",
+    "SPEED 2": "cv",
+    "OUT1": "audio",
+    "OUT2": "audio"
+  },
+  "confidence": "high",
+  "source": "Ephemere_manual.pdf p3 (lettered panel diagram, jacks A-L), p1 (panel)",
+  "notes": "Two mirrored channels: channel 1 on the left, channel 2 on the right. The panel prints INPUT / RECORD / PLAY|RES / SCAN / SPEED without numbers, so channel numbers were added. RECORD and PLAY/RES are trigger inputs; SCAN and SPEED are CV inputs. With nothing patched to INPUT, the INPUT pot acts as an offset/CV source.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

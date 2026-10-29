@@ -1,0 +1,34 @@
+{
+  "id": "instruo-tanh3",
+  "name": "tanh[3]",
+  "maker": "Instruō",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-tanh-3",
+    "listedAs": "Instruō tanh[3]"
+  },
+  "inputs": [
+    "IN 1",
+    "IN 2",
+    "IN 3"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "OUT 3"
+  ],
+  "signals": {
+    "IN 1": "audio",
+    "IN 2": "audio",
+    "IN 3": "audio",
+    "OUT 1": "audio",
+    "OUT 2": "audio",
+    "OUT 3": "audio"
+  },
+  "confidence": "high",
+  "source": "tanh3-Manual.pdf p5 (overview/key), p6",
+  "notes": "Three identical channels, numbered top to bottom; panel marks jacks with I/O icons only.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

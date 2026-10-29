@@ -1,0 +1,42 @@
+{
+  "id": "mutable-instruments-plaits",
+  "name": "Plaits",
+  "maker": "Mutable instruments",
+  "hp": 12,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/mutable-instruments-plaits",
+    "listedAs": "Mutable instruments Plaits"
+  },
+  "inputs": [
+    "MODEL",
+    "TIMBRE CV",
+    "FM",
+    "MORPH CV",
+    "HARMO",
+    "TRIG",
+    "LEVEL",
+    "V/OCT"
+  ],
+  "outputs": [
+    "OUT",
+    "AUX"
+  ],
+  "signals": {
+    "MODEL": "cv",
+    "TIMBRE CV": "cv",
+    "FM": "audio",
+    "MORPH CV": "cv",
+    "HARMO": "cv",
+    "TRIG": "gate",
+    "LEVEL": "cv",
+    "V/OCT": "pitch",
+    "OUT": "audio",
+    "AUX": "audio"
+  },
+  "confidence": "high",
+  "source": "Mutable Instruments | Plaits.pdf p1 (front panel diagram) + p2 (inputs and outputs)",
+  "notes": "TIMBRE and MORPH CV jacks are unlabelled on the panel (linked by dotted lines to the TIMBRE/MORPH attenuverters); MODEL, FM, HARMO printed. TRIG is normalled to LEVEL (dotted line): TRIG strikes the internal LPG unless LEVEL is patched. Count matches VCV (8 in / 2 out).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

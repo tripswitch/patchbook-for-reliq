@@ -1,0 +1,54 @@
+{
+  "id": "instruo-scion",
+  "name": "Scion",
+  "maker": "Instruō",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-scion",
+    "listedAs": "Instruō SCION"
+  },
+  "inputs": [
+    "SENSOR",
+    "SENSITIVITY CV",
+    "DENSITY CV",
+    "GATE IN 1",
+    "GATE IN 2",
+    "GATE IN 3",
+    "GATE IN 4"
+  ],
+  "outputs": [
+    "CV OUT 1",
+    "CV OUT 2",
+    "CV OUT 3",
+    "CV OUT 4",
+    "GATE OUT 1",
+    "GATE OUT 2",
+    "GATE OUT 3",
+    "GATE OUT 4",
+    "RAW"
+  ],
+  "signals": {
+    "SENSOR": "cv",
+    "SENSITIVITY CV": "cv",
+    "DENSITY CV": "cv",
+    "GATE IN 1": "gate",
+    "GATE IN 2": "gate",
+    "GATE IN 3": "gate",
+    "GATE IN 4": "gate",
+    "CV OUT 1": "cv",
+    "CV OUT 2": "cv",
+    "CV OUT 3": "cv",
+    "CV OUT 4": "cv",
+    "GATE OUT 1": "gate",
+    "GATE OUT 2": "gate",
+    "GATE OUT 3": "gate",
+    "GATE OUT 4": "gate",
+    "RAW": "cv"
+  },
+  "confidence": "high",
+  "source": "SCION-Manual-A5.pdf p.5 (panel overview and key)",
+  "notes": "SENSOR (Sensor Input, icon-only on panel) accepts plant/biofeedback probes, touch or any audio/CV; linked to the Leaf touch pad via a jumper. RAW (Raw Signal Output) is icon-only on the panel, 0-5V pulse. Channels 1-4 run left to right (Blue, Green, ... colours of the Tree). Gate Inputs ratchet or clock a sample-and-hold depending on mode.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

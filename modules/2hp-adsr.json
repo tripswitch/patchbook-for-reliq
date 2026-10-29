@@ -1,0 +1,26 @@
+{
+  "id": "2hp-adsr",
+  "name": "ADSR",
+  "maker": "2hp",
+  "hp": 2,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/2hp-adsr",
+    "listedAs": "2hp ADSR"
+  },
+  "inputs": [
+    "GATE"
+  ],
+  "outputs": [
+    "OUT"
+  ],
+  "signals": {
+    "GATE": "gate",
+    "OUT": "cv"
+  },
+  "confidence": "high",
+  "source": "ADSR_Manual.pdf p5 (panel diagram), p6",
+  "notes": "Gate threshold 2.5V; envelope output 0-10V. RANGE is a toggle, not a jack.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

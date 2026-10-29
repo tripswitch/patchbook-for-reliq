@@ -1,0 +1,72 @@
+{
+  "id": "expert-sleepers-es-9",
+  "name": "ES-9",
+  "maker": "Expert Sleepers",
+  "hp": 16,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/expert-sleepers-es-9",
+    "listedAs": "Expert Sleepers ES-9"
+  },
+  "inputs": [
+    "IN 1",
+    "IN 2",
+    "IN 3",
+    "IN 4",
+    "IN 5",
+    "IN 6",
+    "IN 7",
+    "IN 8",
+    "IN 9",
+    "IN 10",
+    "IN 11",
+    "IN 12",
+    "IN 13",
+    "IN 14"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2",
+    "OUT 3",
+    "OUT 4",
+    "OUT 5",
+    "OUT 6",
+    "OUT 7",
+    "OUT 8",
+    "PHONES",
+    "MAIN OUT L",
+    "MAIN OUT R"
+  ],
+  "signals": {
+    "IN 1": "any",
+    "IN 2": "any",
+    "IN 3": "any",
+    "IN 4": "any",
+    "IN 5": "any",
+    "IN 6": "any",
+    "IN 7": "any",
+    "IN 8": "any",
+    "IN 9": "any",
+    "IN 10": "any",
+    "IN 11": "any",
+    "IN 12": "any",
+    "IN 13": "any",
+    "IN 14": "any",
+    "OUT 1": "any",
+    "OUT 2": "any",
+    "OUT 3": "any",
+    "OUT 4": "any",
+    "OUT 5": "any",
+    "OUT 6": "any",
+    "OUT 7": "any",
+    "OUT 8": "any",
+    "PHONES": "audio",
+    "MAIN OUT L": "audio",
+    "MAIN OUT R": "audio"
+  },
+  "confidence": "high",
+  "source": "es9_user_manual_1.3.pdf p.6-7 (Inputs and Outputs, panel photo p.6)",
+  "notes": "Panel prints only numbers: inputs 1-14 (white block), outputs 1-8 (left column), plus headphone symbol and L/R for the main outs. 3.5mm I/O are DC-coupled; main outs are 1/4\" TRS balanced and AC-coupled; phones is a 1/4\" stereo jack (DC-coupled) with volume knob. Default DAW mapping: 3.5mm outs = DAW 9-16, main = 1/2, phones = mix of 1/2 & 3/4, inputs = DAW 1-14. Front-panel optical TOSLINK S/PDIF In/Out and USB-C not listed (not patch jacks). Rear ES-5 (GT1) and MIDI breakout (GT2) headers not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

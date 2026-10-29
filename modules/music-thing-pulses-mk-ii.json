@@ -1,0 +1,43 @@
+{
+  "id": "music-thing-pulses-mk-ii",
+  "name": "Pulses Mk II",
+  "maker": "Music Thing Modular",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/music-thing-modular-pulses-mk-ii",
+    "listedAs": "Music Thing Modular Pulses Mk II"
+  },
+  "inputs": [],
+  "outputs": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "1+2",
+    "2+4",
+    "4+7",
+    "1+2+4+7"
+  ],
+  "signals": {
+    "1": "gate",
+    "2": "gate",
+    "3": "gate",
+    "4": "gate",
+    "5": "gate",
+    "6": "gate",
+    "7": "gate",
+    "1+2": "gate",
+    "2+4": "gate",
+    "4+7": "gate",
+    "1+2+4+7": "gate"
+  },
+  "confidence": "high",
+  "source": "Pulses v2 panel artwork (github.com/TomWhitwell/Turing-Pulse-Expander, Collateral/Pulses v2 Panel/Pulses_v2_Panel artwork.pdf); https://www.musicthing.co.uk/Turing-Pulse-Expander/; ModularGrid panel image (checked 21 Oct 2026)",
+  "notes": "11 gate outputs, each with LED. 1-7 are the individual shift-register bits; the four combination outputs fire when all listed steps are high (BOM uses a 4081 quad AND gate; musicthing: 'when steps 1+2 are active, the 1+2 output pulses'). Labels taken from the v2 open-source panel artwork; the Thonk Mk II production panel is assumed to match but was not seen. Rear ribbon header not listed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

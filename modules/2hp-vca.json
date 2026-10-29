@@ -1,0 +1,34 @@
+{
+  "id": "2hp-vca",
+  "name": "VCA",
+  "maker": "2hp",
+  "hp": 2,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/2hp-vca",
+    "listedAs": "2hp VCA"
+  },
+  "inputs": [
+    "IN 1",
+    "CV 1",
+    "IN 2",
+    "CV 2"
+  ],
+  "outputs": [
+    "OUT 1",
+    "OUT 2"
+  ],
+  "signals": {
+    "IN 1": "audio",
+    "CV 1": "cv",
+    "IN 2": "audio",
+    "CV 2": "cv",
+    "OUT 1": "audio",
+    "OUT 2": "audio"
+  },
+  "confidence": "high",
+  "source": "VCA_Manual.pdf p5 (panel diagram), p6",
+  "notes": "Panel prints IN / CV / OUT twice (channel 1 top, channel 2 bottom); channel numbers added for disambiguation. Manual mentions no normalling between channels.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

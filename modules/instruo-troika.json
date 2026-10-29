@@ -1,0 +1,50 @@
+{
+  "id": "instruo-troika",
+  "name": "Troika",
+  "maker": "Instruō",
+  "hp": 32,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-troika-black-gold-panel",
+    "listedAs": "Instruō troika [Black & Gold Panel]"
+  },
+  "inputs": [
+    "OSC 1 1V/OCT",
+    "OSC 2 1V/OCT",
+    "OSC 3 1V/OCT",
+    "OSC 1 LIN FM",
+    "OSC 2 LIN FM",
+    "OSC 3 LIN FM",
+    "OSC 1 SYNC",
+    "OSC 2 SYNC",
+    "OSC 3 SYNC",
+    "PWM CV"
+  ],
+  "outputs": [
+    "OSC 1 OUT",
+    "OSC 2 OUT",
+    "OSC 3 OUT",
+    "MIX OUT"
+  ],
+  "signals": {
+    "OSC 1 1V/OCT": "pitch",
+    "OSC 2 1V/OCT": "pitch",
+    "OSC 3 1V/OCT": "pitch",
+    "OSC 1 LIN FM": "audio",
+    "OSC 2 LIN FM": "audio",
+    "OSC 3 LIN FM": "audio",
+    "OSC 1 SYNC": "audio",
+    "OSC 2 SYNC": "audio",
+    "OSC 3 SYNC": "audio",
+    "PWM CV": "cv",
+    "OSC 1 OUT": "audio",
+    "OSC 2 OUT": "audio",
+    "OSC 3 OUT": "audio",
+    "MIX OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "Troika-Manual.pdf p.5 (panel overview and key)",
+  "notes": "1V/OCT inputs normal downward (osc 1 -> 2 -> 3) when the 1V/Oct Link toggles are down. PWM CV acts on oscillator 3's pulse wave only. MIX OUT sums the three selected waveforms via the Level knobs.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "divkid-ochd",
+  "name": "ochd",
+  "maker": "DivKid",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/divkid-ochd",
+    "listedAs": "DivKid ochd"
+  },
+  "inputs": [
+    "RATE CV"
+  ],
+  "outputs": [
+    "LFO 1",
+    "LFO 2",
+    "LFO 3",
+    "LFO 4",
+    "LFO 5",
+    "LFO 6",
+    "LFO 7",
+    "LFO 8"
+  ],
+  "signals": {
+    "RATE CV": "cv",
+    "LFO 1": "cv",
+    "LFO 2": "cv",
+    "LFO 3": "cv",
+    "LFO 4": "cv",
+    "LFO 5": "cv",
+    "LFO 6": "cv",
+    "LFO 7": "cv",
+    "LFO 8": "cv"
+  },
+  "confidence": "high",
+  "source": "Ochd-Manual-A5.pdf p5 (overview/key), p6-7",
+  "notes": "Manufacturer stylises it as øchd (Instruō x DivKid). LFO outputs are unlabelled on the panel; numbered top (fastest, LFO 1) to bottom (slowest, LFO 8) as in the manual. Rate CV jack is printed 'CV'.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

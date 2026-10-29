@@ -1,0 +1,34 @@
+{
+  "id": "instruo-traigh",
+  "name": "Tràigh",
+  "maker": "Instruō",
+  "hp": 16,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/instruo-traigh",
+    "listedAs": "Instruō traigh"
+  },
+  "inputs": [
+    "IN 1",
+    "IN 2",
+    "IN 3",
+    "1V/OCT",
+    "LIN FM"
+  ],
+  "outputs": [
+    "OUT"
+  ],
+  "signals": {
+    "IN 1": "audio",
+    "IN 2": "audio",
+    "IN 3": "audio",
+    "1V/OCT": "pitch",
+    "LIN FM": "audio",
+    "OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "Traigh-Manual-A5.pdf p5 (overview/key), p6-8",
+  "notes": "Three mixer inputs are printed collectively as INPUTS beneath the mixer faders; numbered here left to right.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

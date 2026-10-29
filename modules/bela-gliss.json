@@ -1,0 +1,28 @@
+{
+  "id": "bela-gliss",
+  "name": "Gliss",
+  "maker": "Bela",
+  "hp": 4,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/bela-gliss",
+    "listedAs": "Bela Gliss"
+  },
+  "inputs": [
+    "IN"
+  ],
+  "outputs": [
+    "TOP OUT",
+    "BOTTOM OUT"
+  ],
+  "signals": {
+    "IN": "any",
+    "TOP OUT": "cv",
+    "BOTTOM OUT": "cv"
+  },
+  "confidence": "high",
+  "source": "GLISS_user_manual.pdf p7 (Physical features diagram), p8",
+  "notes": "Both outputs are printed just 'OUT' on the panel; the manual calls them Top Output and Bottom Output. Two faceplates supplied (jacks at top or bottom); 'Top' always means the higher jack whichever faceplate is fitted. Input and output voltage ranges are configurable per mode.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

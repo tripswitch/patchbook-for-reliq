@@ -1,0 +1,54 @@
+{
+  "id": "mutable-instruments-marbles",
+  "name": "Marbles",
+  "maker": "Mutable instruments",
+  "hp": 18,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/mutable-instruments-marbles",
+    "listedAs": "Mutable instruments Marbles"
+  },
+  "inputs": [
+    "t BIAS",
+    "t CLOCK",
+    "t RATE",
+    "t JITTER",
+    "DEJA VU",
+    "X STEPS",
+    "X SPREAD",
+    "X CLOCK",
+    "X BIAS"
+  ],
+  "outputs": [
+    "t1",
+    "t2",
+    "t3",
+    "Y",
+    "X1",
+    "X2",
+    "X3"
+  ],
+  "signals": {
+    "t BIAS": "cv",
+    "t CLOCK": "clock",
+    "t RATE": "cv",
+    "t JITTER": "cv",
+    "DEJA VU": "cv",
+    "X STEPS": "cv",
+    "X SPREAD": "cv",
+    "X CLOCK": "clock",
+    "X BIAS": "cv",
+    "t1": "cv",
+    "t2": "cv",
+    "t3": "cv",
+    "Y": "cv",
+    "X1": "cv",
+    "X2": "cv",
+    "X3": "cv"
+  },
+  "confidence": "high",
+  "source": "Mutable Instruments | Marbles.pdf p2 (panel diagram, jacks 1-7) and p3-4",
+  "notes": "Panel prints BIAS/CLOCK on both the t (left) and X (right) sides; prefixed with section to disambiguate. RATE, JITTER, STEPS and SPREAD CV jacks are linked to their knobs by dotted lines. RATE CV has V/O scaling. Count matches VCV (9 in / 7 out).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

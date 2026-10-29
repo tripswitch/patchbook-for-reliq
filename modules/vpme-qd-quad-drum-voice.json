@@ -1,0 +1,42 @@
+{
+  "id": "vpme-qd-quad-drum-voice",
+  "name": "QD Quad Drum Voice",
+  "maker": "vpme.de",
+  "hp": 22,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/vpme-de-qd-quad-drum-voice",
+    "listedAs": "vpme.de QD - Quad Drum Voice"
+  },
+  "inputs": [
+    "CH1 TRIG",
+    "CH2 TRIG",
+    "CH3 TRIG",
+    "CH4 TRIG",
+    "CV 1",
+    "CV 2",
+    "CV 3",
+    "CV 4"
+  ],
+  "outputs": [
+    "OUT L",
+    "OUT R"
+  ],
+  "signals": {
+    "CH1 TRIG": "gate",
+    "CH2 TRIG": "gate",
+    "CH3 TRIG": "gate",
+    "CH4 TRIG": "gate",
+    "CV 1": "cv",
+    "CV 2": "cv",
+    "CV 3": "cv",
+    "CV 4": "cv",
+    "OUT L": "audio",
+    "OUT R": "audio"
+  },
+  "confidence": "high",
+  "source": "vpme.de QD - Quad Drum Voice - User Manual v1.10.pdf p.1 (features/user interface); https://vpme.de/qd/ (4 trigger inputs, 4 assignable CV inputs, 2 output channels); ModularGrid panel image (checked 21 Oct 2026): panel prints TRIG and CV per voice, OUT L and OUT R",
+  "notes": "Manual has no panel image and the official panel image could not be retrieved, so labels are inferred: trigger inputs sit on the left/right edges in the voice-square layout (voice 1 bottom-left, 2, 3, 4); CV 1-4 are the assignable CV inputs; OUT L/OUT R are the main stereo mix outputs (manual calls them main outputs 1 and 2) (manual: 'QD main outputs 1 and 2'; QEX adds OUT 3/4). With CV STEP TRIGGERS enabled each CV can act as a sample-step trigger; CV 4 can select presets via a setting.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

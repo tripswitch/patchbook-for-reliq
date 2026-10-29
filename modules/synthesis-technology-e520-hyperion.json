@@ -1,0 +1,50 @@
+{
+  "id": "synthesis-technology-e520-hyperion",
+  "name": "Hyperion",
+  "maker": "Synthesis Technology",
+  "hp": 48,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/synthesis-technology-e520-hyperion-processor",
+    "listedAs": "Synthesis Technology E520 Hyperion Processor"
+  },
+  "inputs": [
+    "LEFT IN",
+    "RIGHT IN",
+    "MOD 1",
+    "MOD 2",
+    "MOD 3",
+    "MOD 4",
+    "LEFT FDBK",
+    "RIGHT FDBK",
+    "LEFT MIX",
+    "RIGHT MIX",
+    "SYNC IN"
+  ],
+  "outputs": [
+    "LEFT OUT",
+    "RIGHT OUT",
+    "AUX OUT"
+  ],
+  "signals": {
+    "LEFT IN": "audio",
+    "RIGHT IN": "audio",
+    "MOD 1": "cv",
+    "MOD 2": "cv",
+    "MOD 3": "cv",
+    "MOD 4": "cv",
+    "LEFT FDBK": "cv",
+    "RIGHT FDBK": "cv",
+    "LEFT MIX": "cv",
+    "RIGHT MIX": "cv",
+    "SYNC IN": "clock",
+    "LEFT OUT": "audio",
+    "RIGHT OUT": "audio",
+    "AUX OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "ModularGrid panel image (checked 21 Oct 2026) (CONTROL VOLTAGES and AUDIO SIGNALS sections); E520_Effects V1.2.pdf for behaviour",
+  "notes": "MOD 1-4 are the algorithm parameter CVs. AUX OUT carries the algorithm's aux signal or an LFO, set in Prefs. RIGHT MIX CV can load patches when 'CV Patch Load' is on. Mono input supported. LEFT/RIGHT FDBK and MIX are CV inputs for each channel's feedback amount (positive or negative) and dry/wet mix (bipolar, up to ±5 V); SYNC IN takes an external clock for effect timing.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

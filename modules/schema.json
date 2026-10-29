@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Patchbook for Reliq module",
+  "description": "One Eurorack module's front-panel jacks. File name must be <id>.json.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "maker",
+    "inputs",
+    "outputs",
+    "confidence",
+    "source"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "maker-module, lowercase, hyphenated"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "maker": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "hp": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 168
+    },
+    "modulargrid": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https://modulargrid\\.net/e/"
+        },
+        "listedAs": {
+          "type": "string",
+          "description": "Maker + name exactly as ModularGrid shows it; used to match pasted rack data sheets"
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/jack"
+      },
+      "uniqueItems": true
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/jack"
+      },
+      "uniqueItems": true
+    },
+    "signals": {
+      "type": "object",
+      "description": "What each jack carries, keyed by jack name: audio, cv (modulation), pitch (V/oct), gate (gates and triggers), clock (clock and reset) or any (DC-coupled, or depends on settings). Used to colour-code jacks.",
+      "additionalProperties": {
+        "enum": [
+          "audio",
+          "cv",
+          "pitch",
+          "gate",
+          "clock",
+          "any"
+        ]
+      }
+    },
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "description": "high = checked against a panel image"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Manual + page, or URL, the jacks were taken from"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "contributors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "jack": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24
+    }
+  }
+}

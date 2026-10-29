@@ -1,0 +1,29 @@
+{
+  "id": "xaoc-devices-nin",
+  "name": "Nin",
+  "maker": "Xaoc Devices",
+  "hp": 3,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/xaoc-devices-nin",
+    "listedAs": "Xaoc Devices Nin"
+  },
+  "inputs": [
+    "ASGN2 A",
+    "ASGN2 B",
+    "ASGN2 C",
+    "ASGN2 D"
+  ],
+  "outputs": [],
+  "signals": {
+    "ASGN2 A": "cv",
+    "ASGN2 B": "cv",
+    "ASGN2 C": "cv",
+    "ASGN2 D": "cv"
+  },
+  "confidence": "high",
+  "source": "https://xaocdevices.com/main/nin/ and the Xaoc Nin manual (https://analoguehaven.com/xaoc-devices/nin/manual.pdf); Zadar manual p7 only says 'a second set of assignable CV inputs and manual trigger/gate push-buttons'; ModularGrid panel image (checked 21 Oct 2026)",
+  "notes": "4 assignable CV inputs (second asgn set, one per Zadar channel), plus 4 manual gate buttons a-d (not jacks). No outputs. Labels ('A 2asgn' ... 'D 2asgn') come from the Nin manual text read through WebFetch; I could not download the PDF to look at the panel image (proxy blocked), so the exact case and wording are unconfirmed.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

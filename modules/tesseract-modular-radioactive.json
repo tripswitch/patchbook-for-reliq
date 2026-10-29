@@ -1,0 +1,36 @@
+{
+  "id": "tesseract-modular-radioactive",
+  "name": "Radioactive",
+  "maker": "Tesseract Modular",
+  "hp": 6,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/tesseract-modular-radioactive",
+    "listedAs": "Tesseract Modular Radioactive"
+  },
+  "inputs": [
+    "PITCH",
+    "GLIDE/ATTACK",
+    "RELEASE",
+    "SHAPER",
+    "WAVE",
+    "TRIG/GATE"
+  ],
+  "outputs": [
+    "OUT"
+  ],
+  "signals": {
+    "PITCH": "pitch",
+    "GLIDE/ATTACK": "cv",
+    "RELEASE": "cv",
+    "SHAPER": "cv",
+    "WAVE": "gate",
+    "TRIG/GATE": "gate",
+    "OUT": "audio"
+  },
+  "confidence": "high",
+  "source": "Tesseract Modular Radioactive 1.2 user manual.pdf p.7 (manual p.4, Default controls panel diagram)",
+  "notes": "Jacks 5-8 are CV inputs whose function is mode dependent (PITCH is 1V/oct; jack 6 is ATTACK in mode A, GLIDE in modes B/C); with nothing patched the matching pots act as manual controls. WAVE (jack 9) is a trigger input advancing the waveform. TRIG/GATE (jack 15) behaviour set by G-T-P setup.",
+  "contributors": [
+    "tripswitch"
+  ]
+}

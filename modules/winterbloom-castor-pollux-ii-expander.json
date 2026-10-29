@@ -1,0 +1,33 @@
+{
+  "id": "winterbloom-castor-pollux-ii-expander",
+  "name": "Castor & Pollux II expander",
+  "maker": "Winterbloom",
+  "hp": 2,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/winterbloom-castor-pollux-ii-expander",
+    "listedAs": "Winterbloom Castor & Pollux II (expander)"
+  },
+  "inputs": [],
+  "outputs": [
+    "CASTOR RAMP",
+    "CASTOR PULSE",
+    "CASTOR SUB",
+    "POLLUX RAMP",
+    "POLLUX PULSE",
+    "POLLUX SUB"
+  ],
+  "signals": {
+    "CASTOR RAMP": "audio",
+    "CASTOR PULSE": "audio",
+    "CASTOR SUB": "audio",
+    "POLLUX RAMP": "audio",
+    "POLLUX PULSE": "audio",
+    "POLLUX SUB": "audio"
+  },
+  "confidence": "medium",
+  "source": "https://raw.githubusercontent.com/wntrblm/Castor_and_Pollux/main/user_guide/docs/index.md (expander + '9 total outputs' spec) ; https://www.perfectcircuit.com/winterbloom-castor-pollux-ii.html ('Ramp, Pulse, and Sub outputs for each oscillator'); ModularGrid panel image (checked 21 Oct 2026) shows 6 output jacks marked with waveform icons",
+  "notes": "2HP expander connected to the C&P header labelled Expander. The official guide only says it provides individual waveshape outputs per oscillator; six outputs inferred from the 9-total-outputs spec and retailer text (Ramp, Pulse/Square, Sub per oscillator). Panel labels and jack order not confirmed (likely symbols).",
+  "contributors": [
+    "tripswitch"
+  ]
+}

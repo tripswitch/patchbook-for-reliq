@@ -1,0 +1,36 @@
+{
+  "id": "winterbloom-castor-pollux-ii",
+  "name": "Castor & Pollux II",
+  "maker": "Winterbloom",
+  "hp": 14,
+  "modulargrid": {
+    "url": "https://modulargrid.net/e/winterbloom-castor-pollux-ii",
+    "listedAs": "Winterbloom Castor & Pollux II"
+  },
+  "inputs": [
+    "CASTOR PITCH",
+    "POLLUX PITCH",
+    "CASTOR PW",
+    "POLLUX PW"
+  ],
+  "outputs": [
+    "CASTOR OUT",
+    "POLLUX OUT",
+    "MIX OUT"
+  ],
+  "signals": {
+    "CASTOR PITCH": "pitch",
+    "POLLUX PITCH": "pitch",
+    "CASTOR PW": "cv",
+    "POLLUX PW": "cv",
+    "CASTOR OUT": "audio",
+    "POLLUX OUT": "audio",
+    "MIX OUT": "audio"
+  },
+  "confidence": "medium",
+  "source": "https://raw.githubusercontent.com/wntrblm/Castor_and_Pollux/main/user_guide/docs/index.md (Winterbloom C&P user guide) ; https://www.perfectcircuit.com/winterbloom-castor-pollux-ii.html; ModularGrid panel image (checked 21 Oct 2026) (jack count matches)",
+  "notes": "Jacks are on the bottom edge of the panel and largely marked with symbols, so labels here are descriptive (manual names). Pitch CV inputs 0-6V (1V/oct); POLLUX PITCH is normalled to Castor's pitch. PW = pulse width CV inputs (summed with knob in LFO PWM mode). CASTOR/POLLUX OUT are each oscillator's waveform-mix output (star symbol); MIX OUT is the crossfader combined output (Gemini symbol). Spec: 9 outputs total including the 6 on the 2HP expander.",
+  "contributors": [
+    "tripswitch"
+  ]
+}
