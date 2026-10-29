@@ -42,7 +42,7 @@ An unofficial patch notebook for the **Reliq Breakout Module**. Tap any jack on 
 
 Everything saves as you go. There's no save button.
 
-**Want to look around first?** Download the [demo patch](docs/demo-backup.json) and open **Backup & sync → Import a backup**. It's a small but real setup: a QD Quad Drum Voice on a custom-routed drum track, Plaits and Rings on CV tracks, Beads as a stereo send and return through the Matrix, and Pamela's PRO Workout on the clock. The screenshots in this README use it.
+**Want to look around first?** Tap **Try the demo patch** on the welcome screen. (Or download the [demo patch](docs/demo-backup.json) and use **Backup & sync → Import a backup**.) It's a small but real setup: a QD Quad Drum Voice on a custom-routed drum track, Plaits and Rings on CV tracks, Beads as a stereo send and return through the Matrix, and Pamela's PRO Workout on the clock. The screenshots in this README use it.
 
 ## The screen
 

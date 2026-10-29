@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { JackId, SharePayload, Zone } from "./lib/types";
 import { usePatchbook } from "./state";
 import { decodeShare, SHARE_PREFIX } from "./lib/share";
-import { ImportError } from "./lib/backup";
+import { ImportError, parseBackup } from "./lib/backup";
 import { formatKey, isValidKey, normaliseKey, sync, syncAvailable, SyncError, SYNC_LINK_PREFIX } from "./lib/sync";
 import { JoinForm, statusText, useSyncStatus } from "./components/SyncSection";
 import { ToastProvider, useToast } from "./components/ui";
@@ -140,6 +140,17 @@ function Patchbook() {
   const p = state.current;
   const go = (id: JackId | null, from: JackId) => id && setSel({ kind: "jack", id, from });
   const toggle = (next: Selection) => setSel((s) => (s.kind === next.kind ? { kind: "none" } : next));
+
+  /* The demo patch (docs/demo-backup.json), loaded on demand so it stays out of the main bundle. */
+  const loadDemo = async () => {
+    try {
+      const raw = (await import("../docs/demo-backup.json")).default;
+      await actions.importBackup(parseBackup(JSON.stringify(raw)));
+      toast("Demo patch loaded, with a demo rack. Delete them any time.");
+    } catch {
+      toast("Couldn't load the demo patch. Reload and try again.");
+    }
+  };
 
   /* My racks: a view in the main area, toggled like the panel and the connection sheet. */
   const racksRef = useRef<HTMLElement>(null);
@@ -282,7 +293,7 @@ function Patchbook() {
       <div className={`bench ${vp}`}>
         {!p && sel.kind === "none" ? (
           <div className="stage" style={{ gridColumn: "1 / -1" }}>
-            <Welcome onStart={() => actions.createPatch("My first patch")} onRacks={() => showRacks()} onImport={() => setSel({ kind: "data" })} />
+            <Welcome onStart={() => actions.createPatch("My first patch")} onRacks={() => showRacks()} onImport={() => setSel({ kind: "data" })} onDemo={loadDemo} />
             {racksView}
           </div>
         ) : (
@@ -376,7 +387,7 @@ function useViewport(): "wide" | "mid" | "narrow" {
   return vp;
 }
 
-function Welcome({ onStart, onRacks, onImport }: { onStart: () => void; onRacks: () => void; onImport: () => void }) {
+function Welcome({ onStart, onRacks, onImport, onDemo }: { onStart: () => void; onRacks: () => void; onImport: () => void; onDemo: () => void }) {
   const status = useSyncStatus();
   const joining = syncAvailable && status.state !== "off" && status.state !== "unavailable";
   return (
@@ -404,6 +415,10 @@ function Welcome({ onStart, onRacks, onImport }: { onStart: () => void; onRacks:
         <button type="button" className="btn" onClick={onRacks}>Set up my racks</button>
         <button type="button" className="btn" onClick={onImport}>Import a backup</button>
       </div>
+      <p className="hint">
+        Just looking? <button type="button" className="linkbtn" onClick={onDemo}>Try the demo patch</button>: drums, Plaits, Rings and Beads on
+        real modules, with a demo rack. Delete it any time.
+      </p>
     </div>
   );
 }
