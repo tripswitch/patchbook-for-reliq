@@ -2,7 +2,7 @@
 
 An unofficial patch notebook for the **Reliq Breakout Module**. Tap any jack on a redrawn faceplate and record what's plugged into it: the Reliq track behind it, the module and jack at the other end, the cable and any notes. Patchbook works offline, fits a phone, an iPad or a computer, and can keep all your devices in sync.
 
-**Open it:** [patchbook-for-reliq.vercel.app](https://patchbook-for-reliq.vercel.app)
+**Open it:** [patchbook.tripswit.ch](https://patchbook.tripswit.ch)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-patching-dark.webp">

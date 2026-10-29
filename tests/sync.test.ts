@@ -38,6 +38,7 @@ test("a pasted sync link, key or garbage link is read safely", async () => {
   const k = generateSyncKey();
   assert.equal(keyFromInput(`https://patchbook-for-reliq.vercel.app/#sync=${k}`), k);
   assert.equal(keyFromInput(` patchbook-for-reliq.vercel.app/#sync=${formatKey(k)}\n`), k);
+  assert.equal(keyFromInput(`https://patchbook.tripswit.ch/#sync=${k}`), k, "links from the custom domain");
   assert.equal(keyFromInput(formatKey(k).toLowerCase()), k);
   assert.equal(keyFromInput("https://patchbook-for-reliq.vercel.app/"), "", "a link with no key isn't a key");
   assert.equal(keyFromInput("https://patchbook-for-reliq.vercel.app/#share=abcdefghijklmnopqrstuvwxyz0123"), "");
