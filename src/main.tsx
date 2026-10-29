@@ -23,6 +23,8 @@ createRoot(document.getElementById("root")!).render(
 if (import.meta.env.PROD && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").then((reg) => {
+      // Some browsers (private modes, locked-down profiles) don't allow service workers.
+      if (!reg) return;
       const announce = () => window.dispatchEvent(new CustomEvent("patchbook:update", { detail: reg }));
       if (reg.waiting && navigator.serviceWorker.controller) announce();
       reg.addEventListener("updatefound", () => {
@@ -31,7 +33,7 @@ if (import.meta.env.PROD && "serviceWorker" in navigator) {
           if (sw.state === "installed" && navigator.serviceWorker.controller) announce();
         });
       });
-    });
+    }).catch(() => { /* offline use just isn't available */ });
     // Reload only when an update replaces a previous version. On a first visit the new
     // worker also takes control, and reloading then would drop a share link the user just opened.
     const hadController = !!navigator.serviceWorker.controller;

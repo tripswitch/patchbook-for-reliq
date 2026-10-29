@@ -11,8 +11,9 @@ import type { Backup } from "./types";
  * link that carries the key in its #fragment). The key never leaves the devices: from it each
  * device derives a vault token (to find the sync space on the server), an encryption key and an
  * item-id key (see vault.ts). Every local change is queued, encrypted and pushed to a Supabase
- * database through SQL functions (supabase/migrations/0001_sync.sql); other devices pull what
- * changed since they last looked. Conflicts resolve last-write-wins on each record's updatedAt.
+ * database through SQL functions (supabase/migrations/); other devices pull the changes after the
+ * last revision they saw. Deletions are encrypted too. Conflicts resolve last-write-wins on each
+ * record's updatedAt, read from inside the encrypted record, so the server can't reorder edits.
  * The app keeps working offline and catches up when it's back.
  */
 
@@ -24,19 +25,20 @@ export const syncAvailable = !!(URL_ && ANON);
 
 export const SYNC_LINK_PREFIX = "#sync=";
 const META_KEY = "sync:key";
-const META_SINCE = "sync:since";
+/** The last revision this device has pulled (a number). */
+const META_SINCE = "sync:rev";
 const META_DIRTY = "sync:dirty";
 const META_PROTO = "sync:proto";
 const META_PREJOIN = "sync:prejoin";
-const PROTO = 2;
+const PROTO = 3;
 const PUSH_DELAY = 1500;
 const POLL_EVERY = 60_000;
 const BATCH = 100;
 const PAGE = 500;
 /** Matches the server's limit on one encrypted item. */
 export const MAX_BLOB = 48 * 1024;
-/** Pull a few minutes back from the last row seen, so a slow concurrent push isn't missed. */
-const OVERLAP_MS = 5 * 60_000;
+/** Records without a timestamp (from old backups) lose to any dated copy. */
+const UNDATED = "1970-01-01T00:00:00.000Z";
 
 /* ---------- keys ---------- */
 
@@ -69,24 +71,30 @@ export const syncLink = (key: string, base = location.origin + location.pathname
 
 /* ---------- merge rule (pure, tested) ---------- */
 
+/** A record from another device, as read from inside its encrypted blob. */
 export interface RemoteState {
   deleted: boolean;
-  client_updated_at: string;
+  updatedAt: string;
 }
 
 /** A row as the server returns it. */
-interface RemoteRow extends RemoteState {
+interface RemoteRow {
   item: string;
+  /** Null only for deletions made by older versions, which aren't encrypted and are ignored. */
   blob: string | null;
-  server_updated_at: string;
+  deleted: boolean;
+  rev: number;
+}
+interface PullResult {
+  rows: RemoteRow[];
+  /** The newest revision in the sync space, or null if it's empty. */
+  head: number | null;
 }
 
-/** What's inside an encrypted blob. */
-interface Sealed {
-  kind: ItemKind;
-  id: string;
-  data: unknown;
-}
+/** What's inside an encrypted blob: a record, or a deletion with its time. */
+type Sealed =
+  | { kind: ItemKind; id: string; data: unknown; deleted?: undefined }
+  | { kind: ItemKind; id: string; deleted: true; updatedAt: string };
 
 export interface DirtyEntry {
   /** Set when the local record was deleted and the deletion hasn't been pushed yet. */
@@ -103,7 +111,7 @@ const t = (iso?: string) => (iso ? Date.parse(iso) || 0 : 0);
 export function shouldApply(local: { updatedAt?: string } | undefined, dirty: DirtyEntry | undefined, remote: RemoteState): boolean {
   const localTime = local ? t(local.updatedAt) : dirty?.deletedAt ? t(dirty.deletedAt) : null;
   if (localTime === null) return !remote.deleted;
-  return t(remote.client_updated_at) > localTime;
+  return t(remote.updatedAt) > localTime;
 }
 
 /* ---------- transport ---------- */
@@ -137,7 +145,7 @@ async function rpc<T>(fn: string, body: unknown): Promise<T> {
 
 export type SyncStatus =
   | { state: "unavailable" }
-  | { state: "off" }
+  | { state: "off"; note?: string }
   | { state: "idle" | "syncing"; lastSynced?: string; note?: string }
   | { state: "offline"; lastSynced?: string }
   | { state: "error"; message: string; lastSynced?: string };
@@ -159,9 +167,11 @@ class SyncEngine {
   private keys: VaultKeys | null = null;
   private dirty: Record<string, DirtyEntry> = {};
   private versions = new Map<string, number>();
-  /** item id → kind and id, for records this device knows about. */
-  private index = new Map<string, { kind: ItemKind; id: string }>();
   private tooLarge = new Set<string>();
+  /** Items the server refused because it has a newer copy; fetched after the next pull. */
+  private refused = new Set<string>();
+  /** Set while "Delete my synced data" runs, so nothing re-uploads in the meantime. */
+  private deleting = false;
   private status: SyncStatus = { state: syncAvailable ? "off" : "unavailable" };
   private listeners = new Set<Listener>();
   private chain: Promise<unknown> = Promise.resolve();
@@ -184,10 +194,12 @@ class SyncEngine {
     if (!key) return;
     if (!isValidKey(key)) return void (await this.disable());
     await this.useKey(key);
-    // Upgrading from unencrypted sync (v1): send everything again, encrypted.
+    // Upgrading from an older sync version: send everything again in the current format and
+    // read the sync space from the start.
     if ((await storage.getMeta<number>(META_PROTO)) !== PROTO) {
       await this.markAllDirty();
       await storage.setMeta(META_SINCE, null);
+      await storage.setMeta("sync:since", null); // v2's time-based cursor
       await storage.setMeta(META_PROTO, PROTO);
     }
     this.begin();
@@ -196,7 +208,6 @@ class SyncEngine {
   private async useKey(key: string) {
     this.key = key;
     this.keys = await deriveVault(key);
-    this.index.clear();
   }
 
   get current() {
@@ -252,7 +263,6 @@ class SyncEngine {
   async disable() {
     this.key = null;
     this.keys = null;
-    this.index.clear();
     clearInterval(this.pollTimer);
     clearTimeout(this.pushTimer);
     this.dirty = {};
@@ -265,10 +275,17 @@ class SyncEngine {
   /** Delete everything stored on the server for this sync space, then stop syncing here. */
   async deleteRemote(): Promise<number> {
     if (!this.keys) return 0;
-    await this.chain.catch(() => {});
-    const n = await rpc<number>("sync_delete", { p_vault: this.keys.token });
-    await this.disable();
-    return n;
+    this.deleting = true;
+    clearInterval(this.pollTimer);
+    clearTimeout(this.pushTimer);
+    try {
+      await this.chain.catch(() => {});
+      const n = await rpc<number>("sync_delete", { p_vault: this.keys.token });
+      await this.disable();
+      return n;
+    } finally {
+      this.deleting = false;
+    }
   }
 
   /* ----- undoing a join ----- */
@@ -320,7 +337,7 @@ class SyncEngine {
   /* ----- running ----- */
 
   syncNow() {
-    if (!this.key) return Promise.resolve();
+    if (!this.key || this.deleting) return Promise.resolve();
     this.chain = this.chain.then(() => this.run()).catch(() => {});
     return this.chain;
   }
@@ -350,23 +367,20 @@ class SyncEngine {
     this.pushTimer = setTimeout(() => void this.syncNow(), PUSH_DELAY);
   }
 
-  private async itemFor(kind: ItemKind, id: string) {
-    const item = await itemId(this.keys!, kind, id);
-    this.index.set(item, { kind, id });
-    return item;
-  }
-
-  /** Map every local record to its item id, so deletions from other devices can be found. */
-  private async buildIndex() {
-    for (const kind of KINDS) for (const r of await storage.raw.all<{ id: string }>(kind)) await this.itemFor(kind, r.id);
-  }
-
   private async run() {
     if (!this.key || !this.keys) return;
     this.set({ state: "syncing", lastSynced: this.lastSynced });
     try {
-      await this.push();
-      await this.pull();
+      // A push that keeps failing (space full, daily limit) mustn't stop changes arriving.
+      let pushError: unknown = null;
+      try {
+        await this.push();
+      } catch (e) {
+        if (e instanceof SyncError && e.message === "offline") throw e;
+        pushError = e;
+      }
+      if (!(await this.pull())) return;
+      if (pushError) throw pushError;
       this.lastSynced = nowIso();
       const n = this.tooLarge.size;
       this.set({
@@ -391,10 +405,10 @@ class SyncEngine {
         const [kind, ...rest] = k.split(":") as [ItemKind, ...string[]];
         const id = rest.join(":");
         if (!KINDS.includes(kind)) continue;
-        const item = await this.itemFor(kind, id);
+        const item = await itemId(this.keys!, kind, id);
         const rec = await storage.raw.get<{ id: string; updatedAt?: string }>(kind, id);
         if (rec) {
-          const updatedAt = clampTime(rec.updatedAt);
+          const updatedAt = rec.updatedAt ? clampTime(rec.updatedAt) : UNDATED;
           const blob = await seal(this.keys!, item, { kind, id, data: rec } satisfies Sealed);
           if (blob.length > MAX_BLOB) {
             this.tooLarge.add(k);
@@ -402,58 +416,86 @@ class SyncEngine {
             continue;
           }
           items.push({ item, blob, deleted: false, updatedAt });
-        } else items.push({ item, deleted: true, updatedAt: clampTime(this.dirty[k]?.deletedAt) });
+        } else {
+          const updatedAt = clampTime(this.dirty[k]?.deletedAt);
+          const blob = await seal(this.keys!, item, { kind, id, deleted: true, updatedAt } satisfies Sealed, { pad: false });
+          items.push({ item, blob, deleted: true, updatedAt });
+        }
       }
-      if (items.length) await rpc("sync_push", { p_vault: this.keys!.token, p_items: items });
+      if (items.length) {
+        const res = await rpc<{ refused?: unknown }>("sync_push", { p_vault: this.keys!.token, p_items: items });
+        if (Array.isArray(res?.refused)) for (const r of res.refused) if (typeof r === "string") this.refused.add(r);
+      }
       for (const [k, v] of sent) if ((this.versions.get(k) ?? 0) === v) delete this.dirty[k];
       await storage.setMeta(META_DIRTY, this.dirty);
     }
   }
 
-  private async pull() {
-    let since = (await storage.getMeta<string>(META_SINCE)) ?? null;
-    let changed = false;
-    let indexed = false;
+  /**
+   * Fetch changes after the last revision seen, page by page, then the server's copy of anything
+   * a push was refused for. Returns false if the sync space no longer exists (sync is then off).
+   */
+  private async pull(): Promise<boolean> {
+    let since = (await storage.getMeta<number>(META_SINCE)) ?? 0;
+    if (typeof since !== "number" || !Number.isSafeInteger(since) || since < 0) since = 0;
+    const state = { changed: false };
     for (let page = 0; page < 100; page++) {
-      // Only the first page reaches back; later pages continue exactly where the last one ended.
-      const from = since && page === 0 ? new Date(Date.parse(since) - OVERLAP_MS).toISOString() : since;
-      const rows = await rpc<RemoteRow[]>("sync_pull", { p_vault: this.keys!.token, p_since: from });
-      for (const r of rows) {
-        let target: { kind: ItemKind; id: string } | undefined;
-        let clean: { id: string; updatedAt?: string } | null = null;
-        if (r.deleted) {
-          if (!indexed) (await this.buildIndex(), (indexed = true));
-          target = this.index.get(r.item);
-          if (!target) continue; // a deletion of something this device never had
-        } else {
-          if (!r.blob) continue;
-          const sealed = (await open(this.keys!, r.item, r.blob)) as Sealed | null;
-          if (!sealed || !KINDS.includes(sealed.kind) || typeof sealed.id !== "string") continue;
-          clean = sealed.kind === "patch" ? cleanPatch(sealed.data) : sealed.kind === "rack" ? cleanRack(sealed.data) : cleanOverride(sealed.data);
-          if (!clean || clean.id !== sealed.id) continue;
-          target = { kind: sealed.kind, id: sealed.id };
-          this.index.set(r.item, target);
-        }
-        const k = `${target.kind}:${target.id}`;
-        const local = await storage.raw.get<{ updatedAt?: string }>(target.kind, target.id);
-        if (!shouldApply(local, this.dirty[k], r)) continue;
-        if (r.deleted) await storage.raw.delete(target.kind, target.id);
-        else {
-          clean!.updatedAt = clampTime(clean!.updatedAt ?? r.client_updated_at);
-          await storage.raw.put(target.kind, clean!);
-        }
-        delete this.dirty[k];
-        changed = true;
+      const res = await rpc<PullResult>("sync_pull", { p_vault: this.keys!.token, p_after: since });
+      const rows = Array.isArray(res?.rows) ? res.rows : [];
+      const head = typeof res?.head === "number" ? res.head : 0;
+      // The space was emptied (deleted from another device, or unused for a year): stop, don't refill it.
+      if (page === 0 && since > head) {
+        await this.disable();
+        this.set({
+          state: "off",
+          note: "This sync space no longer exists on the server: it was deleted, or not used for 12 months. Sync is off on this device. Your patches are still here; turn sync on again to start a new sync space.",
+        });
+        return false;
       }
-      const last = rows[rows.length - 1]?.server_updated_at;
-      // Never move the cursor backwards (the overlap can return only older rows).
-      const advanced = !!last && (!since || t(last) > t(since));
-      if (advanced) since = last;
-      if (rows.length < PAGE || !advanced) break;
+      for (const r of rows) await this.applyRow(r, state);
+      const last = rows[rows.length - 1]?.rev;
+      if (typeof last === "number" && last > since) since = last;
+      await storage.setMeta(META_SINCE, since);
+      if (rows.length < PAGE) break;
     }
-    await storage.setMeta(META_SINCE, since);
+    if (this.refused.size) {
+      const items = [...this.refused].slice(0, 200);
+      const res = await rpc<PullResult>("sync_pull", { p_vault: this.keys!.token, p_after: 0, p_items: items });
+      for (const r of Array.isArray(res?.rows) ? res.rows : []) await this.applyRow(r, state);
+      for (const i of items) this.refused.delete(i);
+    }
     await storage.setMeta(META_DIRTY, this.dirty);
-    if (changed) this.onRemoteChange();
+    if (state.changed) this.onRemoteChange();
+    return true;
+  }
+
+  /** Apply one row from the server, if it's genuine and newer than ours. Anything odd is skipped. */
+  private async applyRow(r: RemoteRow, state: { changed: boolean }) {
+    try {
+      if (!r || typeof r.item !== "string" || typeof r.blob !== "string") return; // e.g. an old unencrypted deletion
+      const sealed = (await open(this.keys!, r.item, r.blob)) as Sealed | null;
+      if (!sealed || typeof sealed !== "object" || !KINDS.includes(sealed.kind) || typeof sealed.id !== "string") return;
+      // The item id must be the one this sync key gives that record.
+      if ((await itemId(this.keys!, sealed.kind, sealed.id)) !== r.item) return;
+      const k = `${sealed.kind}:${sealed.id}`;
+      const local = await storage.raw.get<{ updatedAt?: string }>(sealed.kind, sealed.id);
+      if (sealed.deleted === true) {
+        if (typeof sealed.updatedAt !== "string") return;
+        if (!shouldApply(local, this.dirty[k], { deleted: true, updatedAt: clampTime(sealed.updatedAt) })) return;
+        await storage.raw.delete(sealed.kind, sealed.id);
+      } else {
+        const clean = sealed.kind === "patch" ? cleanPatch(sealed.data) : sealed.kind === "rack" ? cleanRack(sealed.data) : cleanOverride(sealed.data);
+        if (!clean || clean.id !== sealed.id) return;
+        const updatedAt = clean.updatedAt ? clampTime(clean.updatedAt) : UNDATED;
+        if (!shouldApply(local, this.dirty[k], { deleted: false, updatedAt })) return;
+        clean.updatedAt = updatedAt;
+        await storage.raw.put(sealed.kind, clean);
+      }
+      delete this.dirty[k];
+      state.changed = true;
+    } catch {
+      // A record this version can't read (malformed, or from a newer version): skip it.
+    }
   }
 }
 

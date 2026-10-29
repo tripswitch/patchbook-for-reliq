@@ -256,7 +256,7 @@ Open **Backup & sync** from the header.
 | Action | What it does |
 |---|---|
 | **Download full backup** | A `.json` file with all your patches, racks and module edits. Worth doing now and then, even with sync on. |
-| **Import a backup** | Merges a backup file in. Anything with the same id is replaced by the file's copy. |
+| **Import a backup** | Merges a backup file in. Anything with the same id is replaced by the file's copy, on synced devices too. |
 | **Copy share link** | A link that carries the whole current patch inside the link itself, plus any custom modules it uses. Nothing is uploaded. Anyone who opens it can add a copy to their own Patchbook. |
 | **Download patch file** | The current patch on its own, as a file. |
 | **Copy as text** | The patch as readable text, for notes, forums or messages. |
@@ -279,7 +279,7 @@ Joining merges what's already on that device with the synced patches. Nothing is
 - **Sync space code:** each device shows the four characters next to **Sync space** under Backup & sync. Devices showing the same code share the same patches.
 - **Moving a device to another space:** **Switch to another device's sync space** moves an already-syncing device into another device's space and merges its patches in. Use this if your devices ended up in different spaces.
 - **Stopping:** **Stop syncing on this device** leaves your patches where they are but stops updating them.
-- **Deleting:** **Delete my synced data** removes your sync space from the server straight away and turns sync off on that device. Stop syncing on your other devices too, or their next change uploads everything again. Sync spaces nobody has used for 12 months are deleted automatically.
+- **Deleting:** **Delete my synced data** removes your sync space from the server straight away and turns sync off on that device. Your other devices notice the next time they sync, turn sync off too and say why. Their patches stay on them. Sync spaces no device has used for 12 months are deleted automatically.
 
 **Encrypted on your device.** Every patch, rack and module edit is encrypted before it's uploaded, with a key made from your sync key. The sync key never leaves your devices, so the server only ever holds scrambled data. See [Privacy](#privacy).
 
@@ -316,7 +316,9 @@ Patchbook is a web app that you can install, and it works fully offline once it'
 
 **"Couldn't sync: sync has reached its daily limit" or "sync storage is full".** The sync server has limits to keep it running for everyone (see [Limits](#limits)). Your patches are safe on the device, and keep working. A daily limit resets at midnight UTC.
 
-**"Couldn't sync: this sync space is full".** One sync space holds up to 1,000 items and 2 MB, which is far more than a typical setup needs. Delete patches you no longer need, or keep older ones in a backup file.
+**"Couldn't sync: this sync space is full".** One sync space holds up to 1,500 records (patches, racks, module edits, and deletions from the last 90 days) and 3 MB, which is far more than a typical setup needs. Delete patches you no longer need, or keep older ones in a backup file.
+
+**"This sync space no longer exists on the server".** It was deleted with **Delete my synced data** on another device, or no device used it for 12 months. Sync is off; your patches are still on the device. Turn sync on again to start a new sync space, then link your other devices to it.
 
 **"1 item is too large to sync".** A single patch is limited to 48 KB once encrypted, about 15 times the size of a busy patch. Shorten very long notes on that patch.
 
@@ -373,12 +375,16 @@ Sync is end-to-end encrypted, and uses a [Supabase](https://supabase.com) Postgr
 - **Derived keys** (`src/lib/vault.ts`, Web Crypto): HKDF-SHA-256 turns the sync key into three separate values:
   - a **vault token**, sent to the server to identify the sync space. The server stores only its SHA-256 hash.
   - an **AES-256-GCM key** that encrypts each record. A fresh random IV is used every time, and the item id is bound in as associated data, so encrypted records can't be swapped between items.
-  - an **HMAC-SHA-256 key** that turns each record's kind and id into an opaque item id, so the server can't tell patches from racks.
-- **What's stored:** the token hash, opaque item ids, ciphertext, a deleted flag and two timestamps.
+  - an **HMAC-SHA-256 key** that turns each record's kind and id into an opaque item id. Devices check that every record they receive has the id their key gives it.
+- **Padding:** records are padded to at least 1 KB, then to the next 512 bytes, before encryption, so their exact sizes don't show.
+- **Deletions are encrypted too:** a deletion is a small sealed record holding what was deleted and when. The server can't forge or replay one.
+- **What's stored:** the token hash, opaque item ids, ciphertext, a deleted flag, a revision number and two timestamps.
 - **Access control:** the tables have row-level security on, **no policies** and no table privileges, so the public key can't touch them directly. All access goes through `sync_push`, `sync_pull` and `sync_delete`, which are `security definer` functions that need the vault token. Supabase's advisor flags these as callable without signing in; that's by design.
+- **Revisions:** every write gets a number from a database sequence. Pushes take a lock on their sync space (pulls take it shared), so numbers within a space appear in commit order. Devices fetch exactly the changes after the last number they saw, 500 at a time: nothing is downloaded twice and nothing is missed.
 - **Timing:** every local change is queued, in IndexedDB so it survives reloads, and pushed about 1.5 s later. Devices pull changes every 60 s and when the app comes back to the foreground or online.
-- **Conflicts:** last write wins per record, on the device's `updatedAt`. Deletions sync as tombstones.
-- **Housekeeping:** a daily `pg_cron` job deletes sync spaces unused for 12 months, tombstones older than 90 days and usage counters older than 90 days.
+- **Conflicts:** last write wins per record, on the `updatedAt` inside the encrypted record, so the server can't reorder edits. If the server already has a newer copy, it refuses the push and says so, and the device fetches that copy. A record a device can't read (malformed, or from a newer version) is skipped, never blocks sync.
+- **Validation first:** pushes are checked in full (field names, sizes, formats, duplicates and the limits below) before anything is written, and only the bytes actually stored count toward the daily budget.
+- **Housekeeping:** a daily `pg_cron` job deletes sync spaces no device has used for 12 months (pulls count as use), deletion records older than 90 days and usage counters older than 90 days, and recounts each space.
 
 #### Limits
 
@@ -388,9 +394,11 @@ These protect a free-tier database from accidental or deliberate overuse. They'r
 |---|---|
 | Items per push | 200 |
 | Size of one encrypted item | 48 KB |
-| Per sync space | 1,000 items and 2 MB |
-| Whole database table | 300 MB |
+| Per sync space | 1,500 records (including deletions from the last 90 days) and 3 MB |
+| All sync spaces together | 200 MB |
 | Daily traffic, across everyone | 50 MB up, 120 MB down (resets at midnight UTC) |
+
+Sizes count each record's ciphertext plus 200 bytes for its row, and the storage totals are kept per sync space, so they go back down when data is deleted or expires.
 | Timestamps | more than a day in the future are clamped |
 
 Imports, share links and synced records are also capped field by field (`LIMITS` in `src/lib/backup.ts`), and share links are limited to 64 KB.
@@ -399,7 +407,7 @@ Imports, share links and synced records are also capped field by field (`LIMITS`
 
 Forks build **without sync** by default: the sync variables aren't in the repo, so the sync controls don't appear. To add sync to your own deployment:
 
-1. Create a Supabase project. Run [`supabase/migrations/0001_sync.sql`](supabase/migrations/0001_sync.sql) in its SQL editor. It needs the `pgcrypto` and `pg_cron` extensions, both available on every Supabase plan.
+1. Create a Supabase project. Run [`supabase/migrations/0001_sync.sql`](supabase/migrations/0001_sync.sql), then [`0002_sync_v3.sql`](supabase/migrations/0002_sync_v3.sql), in its SQL editor. They need the `pgcrypto` and `pg_cron` extensions, both available on every Supabase plan.
 2. Copy [`.env.example`](.env.example) to `.env.local` for local development, and set the same two variables in your host's environment settings for production:
    - `VITE_SYNC_URL`: the project URL, `https://<project-ref>.supabase.co`
    - `VITE_SYNC_ANON_KEY`: its publishable key, `sb_publishable_…`. It's meant to be public: it only lets the browser call the three functions.
@@ -416,7 +424,7 @@ Please don't point a fork at the original deployment's database. Its limits are 
 - **Stack:** React 19 + TypeScript, bundled by Vite. Runtime dependencies are React and three self-hosted font packages.
 - **`src/lib/storage.ts`:** a small IndexedDB wrapper (patches, racks, module edits). Other open tabs stay in step via a `BroadcastChannel`.
 - **`src/lib/sync.ts`:** the optional sync engine: queue, push, pull, the merge rule, and undoing a join.
-- **`src/lib/vault.ts`:** sync encryption: key derivation, sealing and opening records.
+- **`src/lib/vault.ts`:** sync encryption: key derivation, padding, sealing and opening records.
 - **`src/lib/flow.ts`:** the Next/Previous walk order, plus jack and module suggestions. Pure and unit-tested.
 - **`src/lib/signals.ts`:** jack signal types, and the name-based guess for unknown jacks.
 - **`src/components/CableDrag.tsx`:** drag-to-patch with pointer events. On touch it waits for press-and-hold, so swipes still scroll.
@@ -451,7 +459,7 @@ The images in this README live in [`docs/images`](docs/images), as WebP, each in
 `npm test` runs the library validation and the unit tests in `tests/`. These cover:
 - backups and share links
 - sync keys and the merge rule
-- sync encryption: key derivation, tamper detection, swapped records
+- sync encryption: key derivation, tamper detection, swapped records, padding
 - import limits, prototype-key handling and oversized share links
 - the Next order and suggestions
 - jack types

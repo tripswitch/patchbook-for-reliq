@@ -275,11 +275,15 @@ export function usePatchbook() {
         return true;
       },
 
-      /** Merge a backup in. Patches, racks and module edits with the same id are replaced by the file's copy. */
+      /**
+       * Merge a backup in. Patches, racks and module edits with the same id are replaced by the file's
+       * copy. Everything is stamped "now", so the file's copy also wins on other synced devices.
+       */
       async importBackup(b: Backup) {
-        for (const p of b.patches) await storage.putPatch(p);
-        for (const r of b.racks) await storage.putRack(r);
-        for (const o of b.moduleOverrides) await storage.putOverride(o);
+        const now = nowIso();
+        for (const p of b.patches) await storage.putPatch({ ...p, updatedAt: now });
+        for (const r of b.racks) await storage.putRack({ ...r, updatedAt: now });
+        for (const o of b.moduleOverrides) await storage.putOverride({ ...o, updatedAt: now });
         await loadAll();
         if (b.patches[0]) setCurrentId([...b.patches].sort(newestFirst)[0].id);
         tabs.announce();

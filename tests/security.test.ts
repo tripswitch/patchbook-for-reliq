@@ -100,3 +100,17 @@ test("share links that are too big, or expand too far, are refused", async () =>
   assert.ok(token.length < MAX_SHARE_TOKEN);
   await assert.rejects(decodeShare(token), /too large/);
 });
+
+test("sealed records are padded, so sizes don't reveal what a record is", async () => {
+  const { padded } = await import("../src/lib/vault");
+  assert.equal(padded("{}").length, 1024, "small records round up to 1 KB");
+  assert.equal(padded("x".repeat(1025)).length, 1536, "then to the next 512 bytes");
+  const k = await deriveVault(generateSyncKey());
+  const item = await itemId(k, "rack", "r1");
+  const small = await seal(k, item, { kind: "rack", id: "r1", data: { id: "r1", name: "R", modules: [] } });
+  const bigger = await seal(k, item, { kind: "rack", id: "r1", data: { id: "r1", name: "R".repeat(80), modules: ["a", "b", "c"] } });
+  assert.equal(small.length, bigger.length, "both fit the same 1 KB bucket");
+  assert.deepEqual(await open(k, item, small), { kind: "rack", id: "r1", data: { id: "r1", name: "R", modules: [] } }, "padding is ignored on open");
+  const tomb = await seal(k, item, { kind: "rack", id: "r1", deleted: true, updatedAt: "2026-10-29T12:00:00.000Z" }, { pad: false });
+  assert.ok(tomb.length < 200, "deletions aren't padded");
+});

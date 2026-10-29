@@ -4,7 +4,7 @@ import { formatKey, generateSyncKey, isValidKey, normaliseKey, shouldApply, type
 
 const remote = (over: Partial<RemoteState> = {}): RemoteState => ({
   deleted: false,
-  client_updated_at: "2026-10-22T12:00:00.000Z",
+  updatedAt: "2026-10-22T12:00:00.000Z",
   ...over,
 });
 

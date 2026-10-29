@@ -66,6 +66,7 @@ export function SyncSection({ empty = false }: { empty?: boolean }) {
     return (
       <>
         <div className="sect">Sync between devices</div>
+        {status.state === "off" && status.note && <span className="hint warnhint" role="status">{status.note}</span>}
         {empty ? (
           <>
             <span className="hint">Already using Patchbook on another device? Paste its sync link here to bring your patches across.</span>
@@ -157,8 +158,8 @@ export function SyncSection({ empty = false }: { empty?: boolean }) {
         />
       </div>
       <span className="hint">
-        Deleting removes this sync space from the server and turns sync off here. Stop syncing on your other devices too, or the next change
-        on one of them uploads its patches again. Sync spaces nobody has used for 12 months are deleted automatically.
+        Deleting removes this sync space from the server and turns sync off here. Your other devices notice the next time they sync and turn
+        sync off too; their patches stay on them. Sync spaces no device has used for 12 months are deleted automatically.
       </span>
     </>
   );

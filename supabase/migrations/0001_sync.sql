@@ -1,5 +1,8 @@
 -- Patchbook for Reliq: device sync (end-to-end encrypted).
 --
+-- Run this first, then 0002_sync_v3.sql, which replaces the functions below and changes the
+-- limits (see its header). This file is kept as it was applied, so existing databases match.
+--
 -- How it works
 --   Devices share a private sync key, which never leaves the devices. From it, each device
 --   derives three things locally (HKDF-SHA-256):

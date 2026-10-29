@@ -61,11 +61,28 @@ export async function itemId(keys: VaultKeys, kind: string, id: string): Promise
   return hex(await crypto.subtle.sign("HMAC", keys.mac, te.encode(`${kind}:${id}`)));
 }
 
-/** Encrypt a value. The item id is bound in as associated data, so blobs can't be swapped between items. */
-export async function seal(keys: VaultKeys, item: string, value: unknown): Promise<string> {
+/**
+ * Plaintext is padded with trailing spaces (which JSON.parse ignores) to at least 1 KB, then to
+ * the next 512 bytes, so the exact size of a record doesn't show through its ciphertext.
+ */
+export function padded(json: string): Uint8Array {
+  const bytes = te.encode(json);
+  const size = Math.max(1024, Math.ceil(bytes.length / 512) * 512);
+  const out = new Uint8Array(size).fill(0x20);
+  out.set(bytes);
+  return out;
+}
+
+/**
+ * Encrypt a value. The item id is bound in as associated data, so blobs can't be swapped between
+ * items. Pass pad: false for small records whose size doesn't matter (deletions).
+ */
+export async function seal(keys: VaultKeys, item: string, value: unknown, opts: { pad?: boolean } = {}): Promise<string> {
   const iv = crypto.getRandomValues(new Uint8Array(12));
+  const json = JSON.stringify(value);
+  const plain = opts.pad === false ? te.encode(json) : padded(json);
   const ct = new Uint8Array(
-    await crypto.subtle.encrypt({ name: "AES-GCM", iv, additionalData: te.encode(item) }, keys.enc, te.encode(JSON.stringify(value))),
+    await crypto.subtle.encrypt({ name: "AES-GCM", iv, additionalData: te.encode(item) }, keys.enc, plain as Uint8Array<ArrayBuffer>),
   );
   const out = new Uint8Array(iv.length + ct.length);
   out.set(iv);
