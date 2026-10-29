@@ -316,6 +316,8 @@ Patchbook is a web app that you can install, and it works fully offline once it'
 
 **"Couldn't sync: sync has reached its daily limit" or "sync storage is full".** The sync server has limits to keep it running for everyone (see [Limits](#limits)). Your patches are safe on the device, and keep working. A daily limit resets at midnight UTC.
 
+**"Sync has reached its daily limit for your network".** Each network (one internet connection, so usually one household or office) can sync up to 5 MB up and 15 MB down, and make 5,000 requests, per day. That's plenty for normal use, even with several devices. Your patches are safe on your devices, and sync carries on the next day (UTC).
+
 **"Couldn't sync: this sync space is full".** One sync space holds up to 1,500 records (patches, racks, module edits, and deletions from the last 90 days) and 3 MB, which is far more than a typical setup needs. Delete patches you no longer need, or keep older ones in a backup file.
 
 **"This sync space no longer exists on the server".** It was deleted with **Delete my synced data** on another device, or no device used it for 12 months. Sync is off; your patches are still on the device. Turn sync on again to start a new sync space, then link your other devices to it.
@@ -332,6 +334,7 @@ The same notice is in the app under **Privacy**, at the bottom of the page.
 
 - **Without sync**, everything stays in your browser on your device. Nothing is sent anywhere. There are no accounts, no analytics and no tracking.
 - **With sync**, each change is encrypted on your device (AES-256-GCM) before it's uploaded, with a key made from your sync key. The sync key never leaves your devices. The server, a Supabase database in London, stores only ciphertext, an opaque id for each item and when it changed. Nobody else can read your patches, including whoever runs the server.
+- **Fair-use limits:** so one person can't use up the shared server, sync limits how much each network can send and receive per day. To count this, the server turns your IP address into a one-way code (SHA-256 with a random salt that changes daily). The address itself isn't stored, and the day's codes and salt are deleted the next day.
 - **How long synced data is kept:** until you delete it with **Delete my synced data**, or 12 months after the sync space was last used.
 - **Share links** carry the patch inside the part of the link after `#`, which browsers don't send to any server. Anyone you give a share link to can read that patch.
 - **Hosting:** the app is served by Vercel, and sync runs on Supabase. Like any web host, they keep short-lived technical logs (such as IP addresses) to run and protect their services. Patchbook doesn't collect or see them.
@@ -397,6 +400,9 @@ These protect a free-tier database from accidental or deliberate overuse. They'r
 | Per sync space | 1,500 records (including deletions from the last 90 days) and 3 MB |
 | All sync spaces together | 200 MB |
 | Daily traffic, across everyone | 50 MB up, 120 MB down (resets at midnight UTC) |
+| Daily, per visitor (network address) | 5,000 requests, 5 MB up, 15 MB down |
+
+Per-visitor limits use Cloudflare's `CF-Connecting-IP` header (clients can't set it), or the first `X-Forwarded-For` entry if that's missing, and count IPv6 addresses by their /64 network. Visitors are stored only as a SHA-256 code with a daily random salt; see [`0003_sync_visitor_limits.sql`](supabase/migrations/0003_sync_visitor_limits.sql). Requests with no address header, such as a self-hosted project with no proxy, aren't limited per visitor.
 
 Sizes count each record's ciphertext plus 200 bytes for its row, and the storage totals are kept per sync space, so they go back down when data is deleted or expires.
 | Timestamps | more than a day in the future are clamped |
@@ -407,7 +413,7 @@ Imports, share links and synced records are also capped field by field (`LIMITS`
 
 Forks build **without sync** by default: the sync variables aren't in the repo, so the sync controls don't appear. To add sync to your own deployment:
 
-1. Create a Supabase project. Run [`supabase/migrations/0001_sync.sql`](supabase/migrations/0001_sync.sql), then [`0002_sync_v3.sql`](supabase/migrations/0002_sync_v3.sql), in its SQL editor. They need the `pgcrypto` and `pg_cron` extensions, both available on every Supabase plan.
+1. Create a Supabase project. Run [`supabase/migrations/0001_sync.sql`](supabase/migrations/0001_sync.sql), [`0002_sync_v3.sql`](supabase/migrations/0002_sync_v3.sql) and [`0003_sync_visitor_limits.sql`](supabase/migrations/0003_sync_visitor_limits.sql), in that order, in its SQL editor. They need the `pgcrypto` and `pg_cron` extensions, both available on every Supabase plan.
 2. Copy [`.env.example`](.env.example) to `.env.local` for local development, and set the same two variables in your host's environment settings for production:
    - `VITE_SYNC_URL`: the project URL, `https://<project-ref>.supabase.co`
    - `VITE_SYNC_ANON_KEY`: its publishable key, `sb_publishable_…`. It's meant to be public: it only lets the browser call the three functions.

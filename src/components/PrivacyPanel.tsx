@@ -24,6 +24,11 @@ export function PrivacyPanel({ onClose }: { onClose: () => void }) {
             server.
           </p>
           <p>
+            <strong>Fair-use limits.</strong> So one person can't use up the shared server, sync limits how much each network can
+            send and receive per day. To count this, the server turns your IP address into a scrambled, one-way code using a random
+            value that changes every day. Your IP address itself isn't stored, and the day's codes are deleted the next day.
+          </p>
+          <p>
             <strong>How long it's kept.</strong> Until you delete it. <em>Backup &amp; sync → Delete my synced data</em> removes your sync
             space from the server straight away. Sync spaces nobody has used for 12 months are deleted automatically.
           </p>
