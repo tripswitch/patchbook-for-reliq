@@ -271,7 +271,7 @@ html.cable-dragging,html.cable-dragging *{cursor:grabbing!important;-webkit-user
 .cablelayer{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:60;overflow:visible}
 .droptray{position:fixed;z-index:50;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-height:46vh;overflow:auto;
   background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:0 18px 40px -16px #0008;display:flex;flex-direction:column;gap:8px;animation:tray-in .16s ease-out}
-.droptray.top{bottom:auto;top:calc(12px + env(safe-area-inset-top,0px))}
+.droptray.at-top{bottom:auto;top:calc(12px + env(safe-area-inset-top,0px))}
 @keyframes tray-in{from{opacity:0;transform:translateY(8px)}}
 .droptray-head{font-size:13px}
 .droptray-body{display:flex;flex-direction:column;gap:6px}

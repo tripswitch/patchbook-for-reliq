@@ -212,7 +212,7 @@ function DragLayer({ drag, patch, library, racks }: { drag: Drag; patch: Patch; 
 
   return (
     <>
-      <div className={`droptray${drag.trayTop ? " top" : ""}`} role="region" aria-label="Drop the cable on a module">
+      <div className={`droptray${drag.trayTop ? " at-top" : ""}`} role="region" aria-label="Drop the cable on a module">
         <div className="droptray-head">
           <b>{j.label}</b> → {overName ? <b>{overName}</b> : "drop on a module"}
           <span className="hint"> · Esc or drop elsewhere to cancel</span>
